@@ -32,28 +32,61 @@
 
 <body id="category">
 
+	<!-- Start Header Area -->
 	<header class="header_area sticky-header">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
-					<a class="navbar-brand logo_h" href="index.html"><img src="img/12345.jpeg" width="100px" style="border-radius: 20px;" alt=""></a>
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item "><a class="nav-link" href="/">Home</a></li>
+							<li class="nav-item "><a class="nav-link" href="/home">Home</a></li>
 							<li class="nav-item active"><a class="nav-link" href="/bookList">All Books</a></li>
+							
+							<!-- <li class="nav-item submenu dropdown">
+								<a href="/product" class="nav-link dropdown-toggle"  role="button" aria-haspopup="true"
+								 aria-expanded="false"></a> -->
+								<!-- <ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+									<li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
+									<li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+									<li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+								</ul> -->
+							<!-- </li> -->
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false">Blog</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+								</ul>
+							</li>
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false">Pages</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+									<li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
+									<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+								</ul>
+							</li>
 							<li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
 							<%if(userData){%>
 								<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 								<li class="nav-item "><a class="nav-link" href="/account" ><i class="fas fa-user"></i><%=userData.name%></a></li>
 							<%}else{%>
-								<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+								<li class="nav-item"><a class="nav-link" href="/">Login</a></li>
 							<%}%>
+
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"></span></a></li>
@@ -75,20 +108,25 @@
 			</div>
 		</div>
 	</header>
+	<!-- End Header Area -->
+
+	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>All Books</h1>
+					<h1>Shop Category page</h1>
 					<nav class="d-flex align-items-center">
 						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="#">All Books</a>
+						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
+						<a href="category.html">Fashon Category</a>
 					</nav>
 				</div>
 			</div>
 		</div>
 	</section>
-	<div class="container mb-5">
+	<!-- End Banner Area -->
+	<div class="container">
 		<div class="row">
 			<div class="col-xl-3 col-lg-4 col-md-5">
 				<div class="sidebar-categories">
@@ -109,10 +147,6 @@
 							</li>
 						</ul>
 						</div>
-<<<<<<< HEAD
-			</div>
-				<div class="sidebar-filter mt-50 ">
-=======
 						<script>
 							function sortProduct(event, data) {
 								event.preventDefault();
@@ -143,7 +177,6 @@
 									
 				</div>
 				<div class="sidebar-filter mt-50">
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
 					<div class="top-filter-head">Product Filters</div>
 					<div class="common-filter">
 						<div class="head">Category</div>
@@ -164,8 +197,6 @@
 								} %>
 							</ul>
 							</div>
-<<<<<<< HEAD
-=======
 							<script>
 							function handleCategoryClick(clickedElement) {
     const categoryId = clickedElement.dataset.categoryId;
@@ -186,7 +217,6 @@
 							
 							
 							
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
 						</form>
 					</div>
 					<div class="common-filter">
@@ -199,10 +229,9 @@
 								<li class="filter-list"><a href="#" onclick="filterBooks('601-900')"><label class="text-dark" for="601-900">₹601 - ₹900</label></a></li>
 								<li class="filter-list"><a href="#" onclick="filterBooks('901-1500')"><label class="text-dark" for="901-1200">₹901 - ₹1500</label></a></li>
 							</ul>
+							<!-- Add hidden field for search -->
 							<input type="hidden" id="searchParam" name="search" value="<%= search %>">
 						</form>
-<<<<<<< HEAD
-=======
 						
 						<script>
 							function filterBooks(priceRange) {
@@ -253,11 +282,11 @@
 								<div id="upper-value"></div>
 							</div>
 						</div>
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
 					</div>
 				</div>
 			</div>
 			<div class="col-xl-9 col-lg-8 col-md-7">
+				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="container">
 						<div class="pagination justify-content-end">
@@ -283,6 +312,8 @@
 					</div>
 					
 				</div>
+				<!-- End Filter Bar -->
+				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
 						<%if(productData.length>0){
@@ -331,14 +362,13 @@
 							</div>
 						</div>
 							<%}%>
-<<<<<<< HEAD
-=======
 						<!-- single product -->
 							<!-- single product -->
 						
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
 					</div>
 				</section>
+				<!-- End Best Seller -->
+				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="container">
 						<div class="pagination justify-content-end">
@@ -366,10 +396,149 @@
 					
 					</div>
 				</div>
+				<!-- End Filter Bar -->
 			</div>
 		</div>
 	</div>
-	
+
+	<!-- Start related-product Area -->
+	<section class="related-product-area section_gap">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-6 text-center">
+					<div class="section-title">
+						<h1>Deals of the Week</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+							magna aliqua.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+							<div class="single-related-product d-flex">
+								<a href="#"><img src="img/r1.jpg" alt=""></a>
+								<div class="desc">
+									<a href="#" class="title">Black lace Heels</a>
+									<div class="price">
+										<h6>$189.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+							<div class="single-related-product d-flex">
+								<a href="#"><img src="img/r2.jpg" alt=""></a>
+								<div class="desc">
+									<a href="#" class="title">Black lace Heels</a>
+									<div class="price">
+										<h6>$189.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+							<div class="single-related-product d-flex">
+								<a href="#"><img src="img/r3.jpg" alt=""></a>
+								<div class="desc">
+									<a href="#" class="title">Black lace Heels</a>
+									<div class="price">
+										<h6>$189.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+							<div class="single-related-product d-flex">
+								<a href="#"><img src="img/r5.jpg" alt=""></a>
+								<div class="desc">
+									<a href="#" class="title">Black lace Heels</a>
+									<div class="price">
+										<h6>$189.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+							<div class="single-related-product d-flex">
+								<a href="#"><img src="img/r6.jpg" alt=""></a>
+								<div class="desc">
+									<a href="#" class="title">Black lace Heels</a>
+									<div class="price">
+										<h6>$189.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+							<div class="single-related-product d-flex">
+								<a href="#"><img src="img/r7.jpg" alt=""></a>
+								<div class="desc">
+									<a href="#" class="title">Black lace Heels</a>
+									<div class="price">
+										<h6>$189.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6">
+							<div class="single-related-product d-flex">
+								<a href="#"><img src="img/r9.jpg" alt=""></a>
+								<div class="desc">
+									<a href="#" class="title">Black lace Heels</a>
+									<div class="price">
+										<h6>$189.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6">
+							<div class="single-related-product d-flex">
+								<a href="#"><img src="img/r10.jpg" alt=""></a>
+								<div class="desc">
+									<a href="#" class="title">Black lace Heels</a>
+									<div class="price">
+										<h6>$189.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6">
+							<div class="single-related-product d-flex">
+								<a href="#"><img src="img/r11.jpg" alt=""></a>
+								<div class="desc">
+									<a href="#" class="title">Black lace Heels</a>
+									<div class="price">
+										<h6>$189.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="ctg-right">
+						<a href="#" target="_blank">
+							<img class="img-fluid d-block mx-auto" src="img/category/c5.jpg" alt="">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End related-product Area -->
+
+	<!-- start footer Area -->
 	<footer class="footer-area section_gap">
 		<div class="container">
 			<div class="row">
@@ -401,6 +570,10 @@
 									<div style="position: absolute; left: -5000px;">
 										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
 									</div>
+
+									<!-- <div class="col-lg-4 col-md-4">
+													<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
+												</div>  -->
 								</div>
 								<div class="info"></div>
 							</form>
@@ -438,10 +611,14 @@
 			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
 				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
 			</div>
 		</div>
 	</footer>
+	<!-- End footer Area -->
+
+	<!-- Modal Quick Product View -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="container relative">
@@ -528,7 +705,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 	<script>
 		function sendToCart(parameter, event) {
-			event.preventDefault();
+			event.preventDefault(); // Prevent default link behavior
 	
 			function sendGetRequest(param) {
 				const url = '/addtocart?' + new URLSearchParams({ id: param });
@@ -553,12 +730,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			sendGetRequest(parameter);
 		}
 	
+		// Function to display a message for a specific duration
 		function showMessage(message) {
 			const messageElement = document.createElement('div');
 			messageElement.textContent = message;
 			messageElement.classList.add('added-message');
 			document.body.appendChild(messageElement);
 	
+			// Show the message for 5 seconds
 			setTimeout(() => {
 				messageElement.style.display = 'none';
 			}, 2000);
@@ -570,73 +749,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<style>
 		.added-message {
 			position: fixed;
-			top: 50px;
-			right: 20px;
-			background-color: #fa6f05; 
-			color: white; 
+			top: 50px; /* Adjust vertical position */
+			right: 20px; /* Adjust horizontal position */
+			background-color: #fa6f05; /* Change to orange color */
+			color: white; /* Text color */
 			padding: 10px;
 			border-radius: 5px;
 			z-index: 9999;
 		}
 	</style>
-	<script>
-		function sortProduct(event, data) {
-			event.preventDefault();
-			const currentUrl = window.location.href;
-			const baseUrl = currentUrl.split('?')[0]; 
-			const updatedUrl = `${baseUrl}?sortdata=${data}`;
-			window.location.href = updatedUrl;
-		}
-	</script>
-	<script>
-	function handleCategoryClick(clickedElement) {
-const categoryId = clickedElement.dataset.categoryId;
-const currentUrl = window.location.href;
-const baseUrl = currentUrl.split('?')[0]; 
-
-const sortCriteria = new URLSearchParams(window.location.search).get('sortdata');
-let updatedUrl = baseUrl;
-
-
-updatedUrl += `?id=${categoryId}?sortdata=${data}`;
-
-
-window.location.href = updatedUrl;
-}
-
-</script>
-	<script>
-		function filterBooks(priceRange) {
-			let min = '';
-			let max = '';
-			if (priceRange === '') {
-			} else if (priceRange === '1-300') {
-				min = '1';
-				max = '300';
-			} else if (priceRange === '301-600') {
-				min = '301';
-				max = '600';
-			} else if (priceRange === '601-900') {
-				min = '601';
-				max = '900';
-			}else if(priceRange === '901-1500'){
-				min = '901';
-				max = '1500';
-			}
 	
-			const categoryId = '<%= categoryId %>'; 
-			const search = document.getElementById('searchParam').value;
-
-			const sortCriteria = new URLSearchParams(window.location.search).get('sortdata');
-			let url = `/bookList?id=${categoryId}&search=${search}&min=${min}&max=${max}`;
-
-			if (sortCriteria) {
-				url += `&sortdata=${sortCriteria}`;
-			}
-
-			window.location.href = url;
-		}
-	</script>
 
 
 

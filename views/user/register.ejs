@@ -1,9 +1,11 @@
 <%-include('../layout/header.ejs')-%>
 
+<!-- Start Header Area -->
 	<header class="header_area sticky-header">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
 					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,10 +13,23 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
 							<li class="nav-item "><a class="nav-link" href="/bookList">All Books</a></li>
+							
+							<!-- <li class="nav-item submenu dropdown">
+								<a href="/product" class="nav-link dropdown-toggle"  role="button" aria-haspopup="true"
+								 aria-expanded="false"></a> -->
+								<!-- <ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+									<li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
+									<li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+									<li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+								</ul> -->
+							<!-- </li> -->
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Blog</a>
@@ -33,7 +48,7 @@
 								</ul>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
-							<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+							<li class="nav-item"><a class="nav-link" href="/">Login</a></li>
 
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
@@ -56,6 +71,9 @@
 			</div>
 		</div>
 	</header>
+	<!-- End Header Area -->
+
+	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -69,6 +87,8 @@
 			</div>
 		</div>
 	</section>
+	<!-- End Banner Area -->
+
 	<!--================Login Box Area =================-->
 	<section class="login_box_area section_gap">
 		<div class="container">
@@ -78,12 +98,15 @@
 						<img class="img-fluid" src="img/loginpage/login1.webp" alt="">
 						<div class="hover">
 							<h4>New to our website?</h4>
-							<a class="primary-btn" href="/login">Already have an Account..?</a>
+							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+							<a class="primary-btn" href="/">Already have an Account..?</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner">
+<!--showing msg in the register -->
+
 						<% 
 						if(typeof message!=='undefined')
 						{
@@ -92,6 +115,9 @@
 							<%
 						}
 						%>
+					
+<!-- end of message -->
+
 						<h3>Register</h3>
 						<form class="row login_form" action="/register" method="post" id="contactForm" novalidate="novalidate" >
 							<div class="col-md-12 form-group">
@@ -126,6 +152,7 @@
 	</section>
 	<!--================End Login Box Area =================-->
 
+	<!-- start footer Area -->
 	<footer class="footer-area section_gap">
 		<div class="container">
 			<div class="row">
@@ -157,6 +184,10 @@
 									<div style="position: absolute; left: -5000px;">
 										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
 									</div>
+
+									<!-- <div class="col-lg-4 col-md-4">
+													<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
+												</div>  -->
 								</div>
 								<div class="info"></div>
 							</form>
@@ -194,6 +225,7 @@
 			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
 				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
 			</div>
 		</div>
@@ -214,11 +246,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 			const emailField = document.getElementById('email').value;
 			const emailError = document.getElementById('email-error');
-<<<<<<< HEAD
-			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; 
-=======
 			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; // Updated regex for email with domain
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
 			if (!emailRegex.test(emailField)) {
 			emailError.textContent = 'Please enter a valid email address.';
 			return false;

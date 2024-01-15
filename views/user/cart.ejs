@@ -2,13 +2,20 @@
 <html lang="zxx" class="no-js">
 
 <head>
+    <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
     <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
     <meta name="author" content="CodePixar">
+    <!-- Meta Description -->
     <meta name="description" content="">
+    <!-- Meta Keyword -->
     <meta name="keywords" content="">
+    <!-- meta character set -->
     <meta charset="UTF-8">
-    <title>999 bookstore</title>
+    <!-- Site Title -->
+    <title>Karma Shop</title>
 
     <!--
             CSS
@@ -23,108 +30,28 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous" />
 
-<<<<<<< HEAD
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-        @media (max-width: 767px) {
-            .product-row {
-                display: block;
-                margin-bottom: 20px;
-            }
-
-            .product-row td {
-                display: block;
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            .product-row img {
-                width: 100%; 
-                margin-bottom: 10px;
-            }
-
-            .product-row button {
-                width: 100%;
-            }
-
-            .thead-mobile {
-                display: none;
-            }
-        }
-    </style>
-    <style>
-        .added-message {
-            position: fixed;
-            top: 50px; 
-            right: 20px; 
-            background-color: #f4bf97; 
-            color: white; 
-            padding: 10px;
-            border-radius: 5px;
-            z-index: 9999;
-        }
-    </style>
-    <style>
-        @media (max-width: 767px) {
-            .product-row {
-                display: block;
-                margin-bottom: 20px;
-            }
-    
-            .product-row td {
-                display: block;
-                width: 100%;
-                box-sizing: border-box;
-            }
-    
-            .product-row img {
-                width: 100%; 
-                margin-bottom: 10px;
-            }
-    
-            .product-row button {
-                width: 100%;
-                font-size: 12px; 
-                padding: 5px; 
-            }
-    
-            .checkout_btn_inner a {
-                font-size: 12px !important;
-                padding: 5px 10px !important;
-            }
-    
-            .thead-mobile {
-                display: none; 
-            }
-        }
-    </style>
-=======
 </head>
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
 
 <body>
 
-    <header class="header_area sticky-header">
+    <!-- Start Header Area -->
+	<header class="header_area sticky-header">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
-					<a class="navbar-brand logo_h" href="index.html"><img src="img/12345.jpeg" width="100px" style="border-radius: 20px;" alt=""></a>
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item "><a class="nav-link" href="/">Home</a></li>
+							<li class="nav-item active"><a class="nav-link" href="/home">Home</a></li>
 							<li class="nav-item"><a class="nav-link" href="/bookList">All Books</a></li>
-<<<<<<< HEAD
-							<li class="nav-item "><a class="nav-link" href="/account">Account</a></li>
-							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-                            <li class="nav-item "><a class="nav-link" href="/account" ><i class="fas fa-user"></i><%=userData.name%></a></li>
-=======
 							
 							<!-- <li class="nav-item submenu dropdown">
 								<a href="/product" class="nav-link dropdown-toggle"  role="button" aria-haspopup="true"
@@ -159,16 +86,30 @@
 							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 								<li class="nav-item  "><a class="nav-link" href="/account" ><i class="fas fa-user" ></i><%=userData.name%></a></li>
 
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item">
+								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+							</li>
 						</ul>
 					</div>
 				</div>
 			</nav>
 		</div>
+		<div class="search_input" id="search_input_box">
+			<div class="container">
+				<form class="d-flex justify-content-between">
+					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
+					<button type="submit" class="btn"></button>
+					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+				</form>
+			</div>
+		</div>
 	</header>
+	<!-- End Header Area -->
+
+    <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -182,6 +123,8 @@
             </div>
         </div>
     </section>
+    <!-- End Banner Area -->
+
     <!--================Cart Area =================-->
     <section class="cart_area">
         <div class="container">
@@ -189,7 +132,7 @@
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
-                            <tr class="thead-mobile">
+                            <tr>
                                 <th scope="col">Product</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Quantity</th>
@@ -199,18 +142,6 @@
                         <tbody>
                             <% if (CartData && CartData.product && CartData.product.length > 0) { %>
                                 <% CartData.product.forEach(productItem => { %>
-<<<<<<< HEAD
-                                    <tr class="product-row">
-                                        <td>
-                                            <div class="media">
-                                                <a href="/product?id=<%= productItem.productId._id %>">
-                                                    <img src="/productimages/<%= productItem.productId.Image[0] %>" alt="">
-                                                </a>
-                                                <div class="media-body">
-                                                    <p><%= productItem.productId.productName %></p>
-                                                </div>
-                                            </div>
-=======
                                   <tr>
                                     <td>
                                       <div class="media">
@@ -240,53 +171,30 @@
                                         </div>
                                         <td>
                                             <h5 id="tPrice_<%= productItem.productId._id %>" name="totalPrice1">₹<%= productItem.productId.salePrice * productItem.Quantity %></h5>
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
                                         </td>
                                         <td>
-                                            <h5 id="sprice">₹<%= productItem.productId.salePrice %></h5>
+                                            
                                         </td>
-                                        <td>
-                                            <div class="product_count">
-                                                <label for="qty">Quantity:</label>
-                                                <input type="number" name="qty" id="sst_<%= productItem.productId._id %>" value="<%= productItem.Quantity %>" title="Quantity:" class="input-text qty" readonly>
-                                                <button onclick="incrementQuantity('<%= productItem.productId._id %>', '<%= productItem.productId.salePrice %>')" class="increase items-count" type="button">
-                                                    <i class="lnr lnr-chevron-up"></i>
-                                                </button>
-                                                <button onclick="decrementQuantity('<%= productItem.productId._id %>', '<%= productItem.productId.salePrice %>')" class="reduced items-count" type="button">
-                                                    <i class="lnr lnr-chevron-down"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5 id="tPrice_<%= productItem.productId._id %>" name="totalPrice1">₹<%= productItem.productId.salePrice * productItem.Quantity %></h5>
-                                        </td>
+                                        <script>
+                                            
+                                        </script>
                                         <td>
                                             <button class="btn btn-warning" onclick="confirmRemove('<%= productItem.productId._id %>')">Remove</button>
+
                                         </td>
-                                    </tr>
+                                  </tr>
                                 <% }) %>
-                            <% } else { %>
-                            <% } %>
-                    
-                            <tr>
+                                
+                                
+                              <% } else { %>
+                                
+                              <% } %>
+                              <!-- SweetAlert CDN -->
+                              <tr class="shipping_area">
                                 <td colspan="3">
-                                    <h5>Total Price</h5>
+                                  <h5>Total Price</h5>
                                 </td>
                                 <td colspan="2">
-<<<<<<< HEAD
-                                    <div class="shipping_box">
-                                        <ul class="list">
-                                            <li id="fullTotal">
-                                                <% if (CartData && CartData.product && CartData.product.length > 0) { %> ₹<span id="totalSum"></span> <% } else { %> <p>Cart is empty</p><% } %>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                    
-                            <tr>
-                                <td colspan="5">
-=======
                                   <div class="shipping_box">
                                     <ul class="list">
                                       <li id="fullTotal"><%if(CartData && CartData.product && CartData.product.length > 0){%> ₹<span id="totalSum"></span>  <%}else{%> <p>Cart is empty</p><%}%> </li>
@@ -327,15 +235,11 @@
 
                                 </td>
                                 <td>
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
                                     <div class="checkout_btn_inner d-flex justify-content-between align-items-center">
-                                        <a class="gray_btn" href="/">Continue shop</a>
+                                        <a class="gray_btn" href="/home">Continue shop</a>
                                         <% if (CartData && CartData.product && CartData.product.length > 0) { %>
                                             <a class="primary-btn" href="" id="checkoutLink">Proceed to Checkout</a>
                                         <% } %>
-<<<<<<< HEAD
-                                    </div>
-=======
                                     </div>                                    
                                     <script>
                                         document.addEventListener('DOMContentLoaded', function(event) {
@@ -371,11 +275,9 @@
                                         });
 
                                     </script>
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
                                 </td>
                             </tr>
                         </tbody>
-                                                
                     </table>
                 </div>
             </div>
@@ -418,6 +320,11 @@
                                         <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value=""
                                             type="text">
                                     </div>
+
+                                    <!-- <div class="col-lg-4 col-md-4">
+													<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
+												</div>  -->
+                                </div>
                                 <div class="info"></div>
                             </form>
                         </div>
@@ -452,8 +359,9 @@
                 </div>
             </div>
             <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-                <p class="footer-text m-0">
+                <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
             </div>
         </div>
@@ -487,22 +395,25 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
+                    // Add any other headers if required
                 }
             });
 
             if (response.ok) {
                 quantity += 1;
-                quantityElement.value = quantity; 
+                quantityElement.value = quantity; // Update the quantity in the input field
                 updateTotalPrice(productId, salePrice, quantity);
                 const totalSumElement = document.getElementById('totalSum');
                 if (totalSumElement) {
-                totalSumElement.textContent = calculateTotalSum(); 
+                totalSumElement.textContent = calculateTotalSum(); // Set the total sum value
                 }
             } else if (response.status === 400) {
                 const data = await response.json();
-                showMessage(data.message); 
+                showMessage(data.message); // Show the alert with the error message from the server
+                // Handle other error scenarios if needed
             } else {
                 console.error('Failed to update quantity');
+                // Handle other error scenarios if needed
             }
         }
 
@@ -512,7 +423,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             const quantityElement = document.getElementById('sst_' + productId);
             const totalSumElement = document.getElementById('totalSum');
                 if (totalSumElement) {
-                totalSumElement.textContent = calculateTotalSum(); 
+                totalSumElement.textContent = calculateTotalSum(); // Set the total sum value
                 }
             let quantity = parseInt(quantityElement.value);
             if (quantity > 1) {
@@ -527,7 +438,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     
         function updateTotalPrice(productId, salePrice, quantity) {
             const totalPrice = quantity * salePrice;
-            document.getElementById('tPrice_' + productId).textContent = `₹${totalPrice}`;
+            document.getElementById('tPrice_' + productId).textContent = `$${totalPrice}`;
         }
         async function sendQuantityToServer(productId, quantity, action) {
                 try {
@@ -535,12 +446,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     const response = await fetch(url, {
                     method: 'GET',
                     headers: {
+                        // Add any other headers if required
                     }
                 });
     
                 if (!response.ok) {
                     throw new Error('Failed to update quantity');
                 }
+                // Handle successful response if needed
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -553,12 +466,24 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         messageElement.classList.add('added-message');
         document.body.appendChild(messageElement);
 
+        // Show the message for 5 seconds
         setTimeout(() => {
             messageElement.style.display = 'none';
         }, 2000);
         }
     </script>
-    
+    <style>
+        .added-message {
+            position: fixed;
+            top: 50px; /* Adjust vertical position */
+            right: 20px; /* Adjust horizontal position */
+            background-color: #f4bf97; /* Change to orange color */
+            color: white; /* Text color */
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 9999;
+        }
+    </style>
 
 
     <!-- ====================end of add to cart msg======================== -->
@@ -568,6 +493,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
      <script>
+         // Event delegation for handling button click
          document.addEventListener('click', function (event) {
            if (event.target.classList.contains('removeButton')) {
              const productId = event.target.getAttribute('data-product-id');
@@ -585,69 +511,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
              cancelButtonText: 'Cancel'
            }).then((result) => {
              if (result.isConfirmed) {
+               // If confirmed, perform the GET request with parameters
                performGetRequest(productId);
              }
            });
          }
        
          function performGetRequest(productId) {
+           // Assuming you want to navigate to a specific URL with a parameter
            window.location.href = `/deleteCartitem?id=${productId}`;
            
          }
        </script>
     <!--====================end of SweetAlert CDN============================= -->
-    <script>
-        function calculateTotalSum() {
-        const tPriceElements = document.querySelectorAll('[id^="tPrice_"]');
-        let totalSum = 0;
-        tPriceElements.forEach(element => {
-            const priceText = element.textContent.replace('₹', ''); 
-            const price = parseFloat(priceText); 
-            totalSum += price;
-        });
-        return totalSum.toFixed(2); 
-        }
 
-        const totalSumElement = document.getElementById('totalSum');
-        if (totalSumElement) {
-        totalSumElement.textContent = calculateTotalSum(); 
-        }
-
-        </script>
-         <script>
-            document.addEventListener('DOMContentLoaded', function(event) {
-            const link = document.getElementById('checkoutLink');
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                fetch('/qtycheck',{
-                    method:'GET',
-                    headers:{
-                        'Content-Type':'application/json'
-                    }
-                })
-                .then(responce=>{
-                    return responce.json()
-                })
-                .then(data=>{
-                    if (data.message === 'Success') {
-                            console.log("success");
-
-                            const totalSum = document.getElementById('totalSum').textContent;
-                            const URL = `/checkout?totalSum=${totalSum}`;
-                            window.location=URL
-                    }else if(data.message=='failed'){
-                        Swal.fire({
-                        title: 'Error!',
-                        html: `<p>The book <strong>${data.product}</strong> is out of stock.</p>`,
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                        });
-                    }
-                })
-            });
-            });
-
-        </script>
 
 </body>
 

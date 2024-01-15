@@ -28,7 +28,7 @@ const securePassword = async(password)=>{
         const passwordHash = await bcrypt.hash(password, 10)
         return passwordHash
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
@@ -79,16 +79,16 @@ const sendVerifyMail = async(data)=>{
 
 // =================user registration=======================
 
-const registerLogin = async(req,res,next)=>{
+const registerLogin = async(req,res)=>{
     try{
         res.render('register')
 
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error)
     }
 }
 
-const insertUser = async(req,res,next)=>{
+const insertUser = async(req,res)=>{
     try{
         console.log(req.body)
         const Data ={
@@ -124,7 +124,7 @@ const insertUser = async(req,res,next)=>{
              }
         }
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
@@ -132,7 +132,7 @@ const insertUser = async(req,res,next)=>{
 
 // ==================otp registration========================
 
-const verifyOtp = async(req,res,next)=>{
+const verifyOtp = async(req,res)=>{
     try{
 
          const spassword = await securePassword(req.session.Data.password)
@@ -164,7 +164,7 @@ const verifyOtp = async(req,res,next)=>{
         
         
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
@@ -174,15 +174,15 @@ const verifyOtp = async(req,res,next)=>{
 // =================user login=======================
 
 
-const userLogin = async(req,res,next)=>{
+const userLogin = async(req,res)=>{
     try{
         res.render('login');
     }catch (error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 } 
 
-const verifyLogin = async(req,res,next)=>{
+const verifyLogin = async(req,res)=>{
 
     try{
             const email = req.body.email;
@@ -195,9 +195,8 @@ const verifyLogin = async(req,res,next)=>{
                 if(userData.is_varified === 0){
                     res.render('login',{message:"invalid user...!"})
                 }else{
-                    console.log("i am here")
                     req.session.user_id = userData._id
-                    res.redirect('/')
+                    res.redirect('/home')
                 } 
             }else{
                 res.render('login',{message:'password is incorrect'})
@@ -207,7 +206,7 @@ const verifyLogin = async(req,res,next)=>{
             res.render('login',{message:'email is incorrect'})
         }
     }catch(error) {
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
@@ -218,15 +217,15 @@ const verifyLogin = async(req,res,next)=>{
 // ==================logout========================
 
 
-const userLogout = async(req,res,next)=>{
+const userLogout = async(req,res)=>{
 
     try{
         delete req.session.user_id
         req.session.save()
-        res.redirect('/login')
+        res.redirect('/')
 
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
@@ -236,15 +235,15 @@ const userLogout = async(req,res,next)=>{
 
 // ======================Forget Password===================
 
-const Loadforgotpassword = async (req,res,next) =>{
+const Loadforgotpassword = async (req,res) =>{
     try{
         res.render('forgotpassword')
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
-const forgetPassword = async (req,res,next)=>{
+const forgetPassword = async (req,res)=>{
     try{
         const userEmail = await User.findOne({email:req.body.email})
 
@@ -259,15 +258,11 @@ const forgetPassword = async (req,res,next)=>{
             res.status(500).json({ message: "failed" });
         }
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
-<<<<<<< HEAD
-const loadForgetPasswordverifyOtp = async (req,res,next)=>{
-=======
 const loadForgetPasswordverifyOtp = async (req,res)=>{
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
     try{
         console.log(req.session.check)
         if(req.session.check){
@@ -276,19 +271,11 @@ const loadForgetPasswordverifyOtp = async (req,res)=>{
             res.redirect('/forgotpassword')
         }
     }catch(error){
-<<<<<<< HEAD
-        next(new Error('An error occurred'));
-    }
-}
-
-const ForgetPasswordresendOtp = async (req,res,next)=>{
-=======
         console.log(error.message)
     }
 }
 
 const ForgetPasswordresendOtp = async (req,res)=>{
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
     try{
         let Data
         console.log("i am here")
@@ -302,20 +289,12 @@ const ForgetPasswordresendOtp = async (req,res)=>{
         sendVerifyMail(Data)
         return res.status(200).json({message:"succcess"})
     }catch(error){
-<<<<<<< HEAD
-        next(new Error('An error occurred'));
-=======
         console.log(error.message);
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
     }
 }
 
 
-<<<<<<< HEAD
-const forgetPasswordverifyOtp = async (req,res,next)=>{
-=======
 const forgetPasswordverifyOtp = async (req,res)=>{
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
     try{
         console.log("session:",req.session.check)
         const Otp=req.body.otp
@@ -326,11 +305,11 @@ const forgetPasswordverifyOtp = async (req,res)=>{
             res.render('forgetpasswordOtp',{message:"wrong otp"})
         }
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
-const forgotPasswordChech = async(req,res,next)=>{
+const forgotPasswordChech = async(req,res)=>{
     try{
         const newPass = req.body.password
         const confirmPass = req.body.password2
@@ -340,18 +319,14 @@ const forgotPasswordChech = async(req,res,next)=>{
             const changePassword =await User.findOneAndUpdate({email:email},{$set:{password:spassword}}) 
             delete req.session.check
             req.session.save()
-            res.redirect('/login')
+            res.redirect('/')
         }else{
             res.status(500).json({message:"failed"})
         }
 
         
     }catch(error){
-<<<<<<< HEAD
-        next(new Error('An error occurred'));
-=======
         console.log(error.message);
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
     }
 }
 
@@ -368,7 +343,7 @@ const forgotPasswordChech = async(req,res,next)=>{
 
 // =======================Home page==========================
 
-const homePage = async (req, res,next) => {
+const homePage = async (req, res) => {
     try {
        
         const bannerHome1 = await Banner.findOne({Name:"Banner for home page 1",is_active:1})
@@ -411,7 +386,7 @@ const homePage = async (req, res,next) => {
         }else{
                 delete req.session.user_id
                 req.session.save()
-                res.redirect('/login')
+                res.redirect('/')
             }
         }
         else{
@@ -429,7 +404,7 @@ const homePage = async (req, res,next) => {
             
         
     } catch (error) {
-        next(new Error('An error occurred'));
+        console.log(error);
     }
 };
 
@@ -439,7 +414,7 @@ const homePage = async (req, res,next) => {
 
 // =======================Product page==============================
 
-const productPage = async(req, res,next)=>{
+const productPage = async(req,res)=>{
     try{
       
         const id = req.query.id ||''
@@ -459,17 +434,17 @@ const productPage = async(req, res,next)=>{
         } else {
             delete req.session.user_id;
             req.session.save();
-            res.redirect('/login');
+            res.redirect('/');
         }
     }else{
         res.render('productDetails', { userData, product: productData, similarproduct: similarProducts });
     }
     } else {
-        res.redirect('/');
+        res.redirect('/home');
     }
     
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error)
     }
 }
 
@@ -481,11 +456,7 @@ const productPage = async(req, res,next)=>{
 
 
 
-<<<<<<< HEAD
-const showAllBooks = async (req, res,next) => {
-=======
 const showAllBooks = async (req, res) => {
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
     try {
         let sortQuery = {};
 
@@ -558,12 +529,8 @@ const showAllBooks = async (req, res) => {
             currentPage
         });
     } catch (error) {
-<<<<<<< HEAD
-        next(new Error('An error occurred'));
-=======
         console.log(error.message);
         res.status(500).send('Internal Server Error');
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
     }
 };
 
@@ -575,7 +542,7 @@ module.exports = { showAllBooks };
 // =====================================Cart=======================================
 
 
-const cartManagement = async(req,res,next)=>{
+const cartManagement = async(req,res)=>{
     try{
         
         const CartData = await Cart.findOne({ userId: req.session.user_id }).populate('product.productId');
@@ -589,11 +556,11 @@ const cartManagement = async(req,res,next)=>{
             res.render('cart', { CartData: CartData });
         }
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
-const cartManagementAddtocart = async(req,res,next)=>{
+const cartManagementAddtocart = async(req,res)=>{
     try{
         console.log("hai")
         const CartData = await Cart.findOne({ userId: req.session.user_id }).populate('product.productId');
@@ -657,12 +624,12 @@ const cartManagementAddtocart = async(req,res,next)=>{
     await cart.save();
     res.redirect('/cart')
         }catch(error){
-            next(new Error('An error occurred'));
+            console.log(error.message)
         }
     }
 
 
-    const addToCart = async (req,res,next) => {
+    const addToCart = async (req, res) => {
         try {
             
 
@@ -715,7 +682,7 @@ const cartManagementAddtocart = async(req,res,next)=>{
             return res.status(200).json({ message: "added to cart" });
 
         } catch (error) {
-            next(new Error('An error occurred'));
+            console.log(error.message);
         }
     }
 
@@ -723,7 +690,7 @@ const cartManagementAddtocart = async(req,res,next)=>{
 
 
 
-const quantityCheck = async(req,res,next)=>{
+const quantityCheck = async(req,res)=>{
     console.log("kooi")
    
     const userId = req.session.user_id;
@@ -775,11 +742,11 @@ const quantityCheck = async(req,res,next)=>{
         }
     
         }catch(error){
-            next(new Error('An error occurred'));
+            console.log(error.message)
         }
     }
 
-const deleteCartitem = async (req,res,next)=>{
+const deleteCartitem = async (req,res)=>{
     try{
         const userid =req.session.user_id
         const productid = req.query.id
@@ -793,7 +760,7 @@ const deleteCartitem = async (req,res,next)=>{
             res.redirect('/cart');
           }
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error)
     }
 }
 
@@ -803,41 +770,6 @@ const deleteCartitem = async (req,res,next)=>{
 // ==================================End of Cart=====================================
 
 // ===========================check out=============================
-<<<<<<< HEAD
-const qtycheck = async(req,res,next)=>{
-    try{
-        console.log("i am here")
-        const id = req.session.user_id;
-        console.log("userID:", id);
-        const cartData = await Cart.findOne({ userId: id });
-        
-        if (cartData) {
-            for (const cartItem of cartData.product) {
-                const productId = cartItem.productId;
-                const productData = await Product.findById(productId);      
-                if (productData) {
-                    const cartQuantity = cartItem.Quantity;
-                    const availableQuantity = productData.Quantity;
-        
-                    console.log(`Product ID: ${productId}`);
-                    console.log(`Cart Quantity: ${cartQuantity}`);
-                    console.log(`Available Quantity: ${availableQuantity}`);
-                    console.log("productData._id",productData.productName);
-                    if (cartQuantity > availableQuantity) {
-                        return res.status(200).json({ product: productData.productName ,message:'failed'});
-                    } else {
-                        console.log("hai")
-                         res.status(200).json({ message:'Success'});
-                    }   
-                } else {
-                    console.log(`Product with ID ${productId} not found`);
-                }
-            }
-        } else {
-            console.log("Cart data not found for this user");
-        }
-        
-=======
 const qtycheck = async(req,res)=>{
     try{
         console.log("i am here")
@@ -887,29 +819,12 @@ const checkoutOrder = async(req,res)=>{
         const CartData = await Cart.findOne({ userId: req.session.user_id }).populate('product.productId');
         const couponData = await Coupon.find({is_active:1})
         res.render('checkout',{userData:userData,cartData:CartData,couponData:couponData,user:user})
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
-
-
-const checkoutOrder = async(req,res,next)=>{
-    try{
-        console.log("i am at checkout")
-        id=req.session.user_id
-        const user = await User.findById({_id:id })
-        const userData = await User.findById(id, { address: 1, _id: 0 })
-        const CartData = await Cart.findOne({ userId: req.session.user_id }).populate('product.productId');
-        const couponData = await Coupon.find({is_active:1})
-        res.render('checkout',{userData:userData,cartData:CartData,couponData:couponData,user:user})
-    }catch(error){
-        next(new Error('An error occurred'));
-    }
-}
-
-const applycoupons = async (req,res,next) => {
+const applycoupons = async (req, res) => {
     try {
         const id = req.session.user_id;
         const userData = await User.findById(id);
@@ -938,10 +853,11 @@ const applycoupons = async (req,res,next) => {
             return res.status(403).json({ message: "Coupon is not applicable for this product" });
         }
     } catch (error) {
-        next(new Error('An error occurred'));
+        console.log(error.message);
+        return res.status(500).json({ message: "Internal server error" });
     }
 };
-const pushingCoupon = async (req,res,next)=>{
+const pushingCoupon = async (req,res)=>{
     try{
         const userId=req.session.user_id
         const couponName = req.body.couponData
@@ -953,13 +869,13 @@ const pushingCoupon = async (req,res,next)=>{
         console.log("i am updatedCoupon",updatedCoupon)
         console.log("i am couponName",couponName)
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
 
 
-const checkoutaddress = async(req,res,next)=>{
+const checkoutaddress = async(req,res)=>{
     try{
         const userId=req.session.user_id
         const addressDetails = {
@@ -982,7 +898,7 @@ const checkoutaddress = async(req,res,next)=>{
 
     res.redirect('/checkout');
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
@@ -1050,17 +966,13 @@ const onlinePay = async (req, res) => {
           });
      
     } catch (error) {
-<<<<<<< HEAD
-        next(new Error('An error occurred'));
-=======
         console.error('Error occurred:', error);
     res.status(500).json({ error: 'Internal server error' });
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
     }
 }
 
 
-const paymentManagement = async (req,res,next)=>{
+const paymentManagement = async (req,res)=>{
     try{
        id=req.session.user_id
        totalAmount=req.body.totalAmount
@@ -1162,12 +1074,12 @@ const paymentManagement = async (req,res,next)=>{
         const deleteCart = await Cart.deleteOne({ userId: id });
         res.status(200).json({ message: 'Order placed successfully' });
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error)
     }
 }
 
 
-const walletPayment = async (req,res,next)=>{
+const walletPayment = async (req,res)=>{
     try{
         id=req.session.user_id
         const userData = await User.findById({_id:id})
@@ -1212,12 +1124,12 @@ const walletPayment = async (req,res,next)=>{
         
 
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
 
-const showeditaddress = async (req,res,next) => {
+const showeditaddress = async (req, res) => {
     try {
         const userId = req.session.user_id; 
         const index = req.query.index; 
@@ -1226,12 +1138,13 @@ const showeditaddress = async (req,res,next) => {
         const userAddress = user ? user.address[index] : null;
         res.render('editAddress', { userAddress,index:index }); 
     } catch (error) {
-        next(new Error('An error occurred'));
+        console.log(error.message);
+        res.status(500).send('Internal Server Error');
     }
 };
 
 
-const editaddress = async (req,res,next) => {
+const editaddress = async (req, res) => {
     try {
         const userId = req.session.user_id;
         const index = req.body.index;
@@ -1255,11 +1168,12 @@ const editaddress = async (req,res,next) => {
 
         res.redirect('/checkout');
     } catch (error) {
-        next(new Error('An error occurred'));
+        console.log(error.message);
+        res.status(500).send('Internal Server Error');
     }
 };
 
-const deleteAddress =  async(req,res,next)=>{
+const deleteAddress =  async(req,res)=>{
     try{
         const userId = req.session.user_id
         const index = req.query.index
@@ -1274,11 +1188,11 @@ const deleteAddress =  async(req,res,next)=>{
         }
         console.log("user",user)
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
-const addaddress = async(req,res,next)=>{
+const addaddress = async(req,res)=>{
     try{
         const userId=req.session.user_id
         const addressDetails = {
@@ -1301,7 +1215,7 @@ const addaddress = async(req,res,next)=>{
 
     res.redirect('/account');
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
@@ -1315,7 +1229,7 @@ const addaddress = async(req,res,next)=>{
 // ===============================user Account=============================
 
 
-const accountManagment = async(req,res,next)=>{
+const accountManagment = async(req,res)=>{
     try{
         id=req.session.user_id
         const userData = await User.findById({_id:id})
@@ -1323,22 +1237,22 @@ const accountManagment = async(req,res,next)=>{
         
         res.render('Account',{userData:userData,orderData:orderData})
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
-const cancerlOrReturn = async(req,res,next)=>{
+const cancerlOrReturn = async(req,res)=>{
     try{
         id=req.query.id
         const orderData = await Order.findById({_id:id}).populate('items.productId')
         const cartid = 
         res.render('cancelOrder',{orderData:orderData})
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
-const cancelOrder = async(req,res,next)=>{
+const cancelOrder = async(req,res)=>{
     try{
         id=req.session.user_id
         console.log("hai i am reached here",req.body)
@@ -1401,15 +1315,34 @@ const cancelOrder = async(req,res,next)=>{
 
         
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
 
+// const returnProduct = async (req,res)=>{
+//     try{
+//         const orderId = req.body.orderId
+//         console.log("i am reached return",req.body.orderId);
+//         const orderData = await Order.findById({_id:orderId})
+//         console.log("orderData:",orderData);
+//         if(orderData.paymentMethod !== 'Cash on delevery')
+//         {
+//             const addToWallet = await User.findOneAndUpdate(
+//                 { _id: id },
+//                 { $inc: { wallet: orderData.totalAmount } }
+//             );
+//             console.log(addToWallet) 
+//         }
 
 
+//     }catch(error){
+//         console.log(error.message)
+//     }
+// }
 
-const profileEdit = async (req,res,next) => {
+
+const profileEdit = async (req, res) => {
     try {
         const id = req.session.user_id;
         console.log("I am here", id);
@@ -1437,13 +1370,13 @@ const profileEdit = async (req,res,next) => {
         }
         
     } catch (error) {
-        next(new Error('An error occurred'));;
+        console.log(error.message);
         res.status(500).send('Internal Server Error'); 
     }
 };
 
 
-const changePassword = async(req,res,next)=>{
+const changePassword = async(req,res)=>{
     try{
         id = req.session.user_id
         const oldPassword = req.query.currentPassword;
@@ -1463,15 +1396,16 @@ const changePassword = async(req,res,next)=>{
         
         console.log("hai",userData)
     }catch(error){
-        next(new Error('An error occurred'));
+        console.log(error.message)
     }
 }
 
 // =================================end of user Account========================
 
-const hai = async (req,res,next)=>{
+const hai = async (req,res)=>{
     try{
-        res.render('500page')
+        console.log("hai")
+        res.render('hello')
     }catch(error){
         console.log(error)
     }

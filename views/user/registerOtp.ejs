@@ -1,20 +1,11 @@
 <%-include('../layout/header.ejs')-%>
-<style>
-	.login_form_inner {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center; 
-	}
 
-	.resend-container {
-		margin-top: 10px; 
-	}
-	</style>
+<!-- Start Header Area -->
 	<header class="header_area sticky-header">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
 					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,10 +13,21 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item "><a class="nav-link" href="/bookList">All Books</a></li>
+							<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false">Shop</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+									<li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
+									<li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+									<li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+								</ul>
+							</li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Blog</a>
@@ -34,21 +36,21 @@
 									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
 								</ul>
 							</li>
-							<li class="nav-item submenu dropdown">
+							<li class="nav-item submenu dropdown active">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Pages</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+									<li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
 									<li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
 									<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
 								</ul>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
-							<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-
+							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a href="/cart" class="cart"><span  class="fa-solid fa-heart" ></span></a></li>
+							
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>
@@ -67,6 +69,9 @@
 			</div>
 		</div>
 	</header>
+	<!-- End Header Area -->
+
+	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -80,6 +85,8 @@
 			</div>
 		</div>
 	</section>
+	<!-- End Banner Area -->
+
 	<!--================Login Box Area =================-->
 	<section class="login_box_area section_gap">
 		<div class="container">
@@ -118,9 +125,6 @@
 							<button id="resendButton" class="primary-btn" style="display: none; border:none">Resend OTP</button>
 						</div>
 						<div id="countdown">30 seconds</div>
-<<<<<<< HEAD
-						
-=======
 						<style>
 						.login_form_inner {
 							/* Your existing styles for login_form_inner */
@@ -208,8 +212,30 @@
 
 							fetch('/resendOtp', {
 								method: 'POST',
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
 								
+							})
+							.then(response => {
+								if (response.ok) {
+									startCountdown()
+									console.log('Resend OTP request sent successfully');
+								} else {
+									console.error('Failed to resend OTP');
+								}
+							})
+							.catch(error => {
+								console.error('Error occurred while resending OTP:', error);
+							});
+
+							
+							document.getElementById('otpInput').style.display = 'block';
+							document.getElementById('countdown').style.display = 'block';
+							document.getElementById('timeM').style.display = 'block';
+							document.getElementById('verify-button').style.display = 'block';
+							document.querySelector('input[name="otp"]').style.display = 'block';
+						});
+
+						window.onload = startCountdown;
+						</script>		
 					</div>
 					</div>
 				</div>
@@ -250,6 +276,10 @@
 									<div style="position: absolute; left: -5000px;">
 										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
 									</div>
+
+									<!-- <div class="col-lg-4 col-md-4">
+													<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
+												</div>  -->
 								</div>
 								<div class="info"></div>
 							</form>
@@ -287,97 +317,11 @@
 			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
 				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
 			</div>
 		</div>
 	</footer>
-
-	<script>
-						
-
-		function submitOtp(){
-			console.log("hai")
-			const otpInput = document.getElementById('otpInput').value;
-			const errorMessageElement = document.getElementById('otp-error');
-			errorMessageElement.textContent = '';
-		
-
-			if(otpInput.trim()==''){
-				console.log("hello")
-				errorMessageElement.textContent = 'Otp is required';
-					return; 								
-			}
-			const submitform = document.getElementById('contactForm')
-			submitform.submit()
-		}
-	let remainingTime = parseInt(localStorage.getItem('remainingTime')) || 30;
-	let countdownInterval;
-
-	function updateCountdown(remainingTime) {
-		const countdownElement = document.getElementById('countdown');
-		countdownElement.textContent = `${remainingTime} seconds`;
-	}
-
-	function startCountdown() {
-		hideResendButton();
-		countdownInterval = setInterval(() => {
-			remainingTime--;
-
-			if (remainingTime <= 0) {
-				clearInterval(countdownInterval);
-				showResendButton();
-			} else {
-				updateCountdown(remainingTime);
-			}
-		}, 1000);
-	}
-
-	function showResendButton() {
-		document.getElementById('resendButton').style.display = 'block';
-		document.getElementById('otpInput').style.display = 'none';
-		document.getElementById('countdown').style.display = 'none';
-		document.getElementById('timeM').style.display = 'none';
-		document.getElementById('verify-button').style.display = 'none';
-		document.querySelector('input[name="otp"]').style.display = 'none';
-	}
-
-	function hideResendButton() {
-		document.getElementById('resendButton').style.display = 'none';
-	}
-
-	window.onbeforeunload = function () {
-		localStorage.setItem('remainingTime', remainingTime.toString());
-	};
-
-	document.getElementById('resendButton').addEventListener('click', function () {
-		remainingTime = 30;
-
-		fetch('/resendOtp', {
-			method: 'POST',
-			
-		})
-		.then(response => {
-			if (response.ok) {
-				startCountdown()
-				console.log('Resend OTP request sent successfully');
-			} else {
-				console.error('Failed to resend OTP');
-			}
-		})
-		.catch(error => {
-			console.error('Error occurred while resending OTP:', error);
-		});
-
-		
-		document.getElementById('otpInput').style.display = 'block';
-		document.getElementById('countdown').style.display = 'block';
-		document.getElementById('timeM').style.display = 'block';
-		document.getElementById('verify-button').style.display = 'block';
-		document.querySelector('input[name="otp"]').style.display = 'block';
-	});
-
-	window.onload = startCountdown;
-	</script>
-
+	<!-- End footer Area -->
 
 <%-include('../layout/footer.ejs')-%>

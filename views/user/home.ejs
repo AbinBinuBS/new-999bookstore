@@ -1,22 +1,23 @@
 <%-include('../layout/header.ejs')-%>
 
+	<!-- Start Header Area -->
 	<header class="header_area sticky-header">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
-					<a class="navbar-brand logo_h" href="index.html"><img src="img/12345.jpeg" width="100px" style="border-radius: 20px;" alt=""></a>
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+							<li class="nav-item active"><a class="nav-link" href="/home">Home</a></li>
 							<li class="nav-item "><a class="nav-link" href="/bookList">All Books</a></li>
-<<<<<<< HEAD
-=======
 							
 							<!-- <li class="nav-item submenu dropdown">
 								<a href="/product" class="nav-link dropdown-toggle"  role="button" aria-haspopup="true"
@@ -46,26 +47,44 @@
 									<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
 								</ul>
 							</li>
->>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
 							<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous" />
 							<li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
 							<% if (user && user._id) { %>
 								<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 								<li class="nav-item "><a class="nav-link" href="/account" ><i class="fas fa-user"></i><%=user.name%></a></li>
 							<% } else { %>
-								<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+								<li class="nav-item"><a class="nav-link" href="/">Login</a></li>
 							<% } %>
+							
+							
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item">
+								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+							</li>
 						</ul>
 					</div>
 				</div>
 			</nav>
 		</div>
+		<div class="search_input" id="search_input_box">
+			<div class="container">
+				<form class="d-flex justify-content-between">
+					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
+					<button type="submit" class="btn"></button>
+					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+				</form>
+			</div>
+		</div>
 	</header>
+	<!-- End Header Area -->
+
+	<!-- start banner Area -->
 		<section class="category-area" >
+			
 				<section class="category-area"  >
+			
 <% if (bannerHome1 && bannerHome1.Image.length > 0){ %>
 	<section class="banner-area" style="background: url('/bannerimages/<%= bannerHome1.Image[0] %>') center no-repeat;background-size: 100%">
 <% } else { %>
@@ -74,13 +93,46 @@
 		<div class="container">
 			<div class="row fullscreen align-items-center justify-content-start">
 				<div class="col-lg-12">
+					<div class="active-banner-slider owl-carousel">
+						<div class="row single-slide align-items-center d-flex">
+							<div class="col-lg-5 col-md-6">
+								<div class="banner-content text-white">
+									<h1 class="text-white"> New <br>Books!</h1>
+									<p class="text-white"></p>
+								</div>
+							</div>
+							<div class="col-lg-7"> 
+								<div class="banner-img">
+									<!-- <img class="img-fluid" src="/img/banner/banner-img.png" alt=""> -->
+								</div>
+							</div>
+						</div>
+						single-slide
+						<div class="row single-slide">
+							<div class="col-lg-5">
+								<div class="banner-content text-white">
+									<h1 class="text-white"> New <br>Books!</h1>
+									<p class="text-white"></p>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<!-- <img class="img-fluid" src="/img/banner/banner-img.png" alt=""> -->
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<!-- End banner Area -->
+
+	<!-- start features Area -->
 	<section class="features-area section_gap">
 		<div class="container">
 			<div class="row features-inner">
+				<!-- single features -->
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
@@ -90,36 +142,43 @@
 						<p>Free Shipping on all order</p>
 					</div>
 				</div>
+				<!-- single features -->
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
 							<img src="/img/features/f-icon2.png" alt="">
 						</div>
 						<h6>Return Policy</h6>
-						<p>Free return for any product</p>
+						<p>Free Shipping on all order</p>
 					</div>
 				</div>
+				<!-- single features -->
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
 							<img src="/img/features/f-icon3.png" alt="">
 						</div>
 						<h6>24/7 Support</h6>
-						<p>Call when you need us</p>
+						<p>Free Shipping on all order</p>
 					</div>
 				</div>
+				<!-- single features -->
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
 							<img src="/img/features/f-icon4.png" alt="">
 						</div>
 						<h6>Secure Payment</h6>
-						<p>Your payment is secure with us</p>
+						<p>Free Shipping on all order</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<!-- end features Area -->
+
+	<!-- Start category Area -->
+	
 	<section class="category-area">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -144,18 +203,26 @@
 			</div>
 		</div>
 	</section>
+	<!-- End category Area -->
+
+	<!-- start product Area -->
 	<section class="owl-carousel active-product-area section_gap">
+		<!-- single product slide -->
 		<div class="single-product-slider">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
 							<h1>Latest Products</h1>
-							<p>This is the latest product and the best product you will get from any universe this books will travel you throug the entire universe</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+								dolore
+								magna aliqua.</p>
 						</div>
 					</div>
 				</div>
 				<div class="row " >
+					<!-- single product -->
+					
 					<% if (newProduct) { %>
 						<% if (newProduct.length > 0 ) { %>
 						<% for (let i = 0; i < newProduct.length; i++) { %>
@@ -182,6 +249,7 @@
 											<h6 class="l-through">₹ <%=newProduct[i].productPrice%></h6>
 										</div>
 										<div class="product-details">
+											<!-- Other product details -->
 											<div class="prd-bottom " style="position: absolute; bottom: 0;">
 												<a href="#" onClick="sendToCart('<%= newProduct[i]._id %>', event)" class="social-info" id="addToBag">
 													<span class="ti-bag"></span>
@@ -218,7 +286,9 @@
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
 							<h1>Best Seller</h1>
-							<p>This is the bestseller books and prety faimous compare to other books and every book is a unique piece,only for a limited time period only.</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+								dolore
+								magna aliqua.</p>
 						</div>
 					</div>
 				</div>
@@ -280,6 +350,9 @@
 		
 		
 	</section>
+	<!-- end product Area -->
+
+	<!-- Start exclusive deal Area -->
 	<section class="exclusive-deal-area">
 		<div class="container-fluid">
 			<div class="row justify-content-center align-items-center">
@@ -300,6 +373,7 @@
 				
 				<div class="col-lg-6 no-padding exclusive-right">
 					<div class="active-exclusive-product-slider">
+						<!-- single exclusive carousel -->
 						<% if (bestSeller.length > 0) { %>
 							<% for (let i = 0; i < bestSeller.length; i++) { %>
 						<div class="single-exclusive-slider">
@@ -324,11 +398,16 @@
 							<% }else { %>
 				 			<p>No products available</p>
 							<% }  %>
+						<!-- single exclusive carousel -->
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<!-- End exclusive deal Area -->
+
+	<!-- Start brand Area -->
 	<section class="brand-area section_gap">
 		<div class="container">
 			<div class="row">
@@ -350,13 +429,17 @@
 			</div>
 		</div>
 	</section>
+	<!-- End brand Area -->
+
+	<!-- Start related-product Area -->
 	<section class="related-product-area section_gap_bottom">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-6 text-center">
 					<div class="section-title">
 						<h1>Deals of the Week</h1>
-						<p>You will never get any other books for this price this is a big sale so dont miss it.</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+							magna aliqua.</p>
 					</div>
 				</div>
 			</div>
@@ -402,6 +485,9 @@
 
 		</div>			
 	</section>
+	<!-- End related-product Area -->
+
+	<!-- start footer Area -->
 	<footer class="footer-area section_gap">
 		<div class="container">
 			<div class="row">
@@ -433,6 +519,10 @@
 									<div style="position: absolute; left: -5000px;">
 										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
 									</div>
+
+									<!-- <div class="col-lg-4 col-md-4">
+												<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
+											</div>  -->
 								</div>
 								<div class="info"></div>
 							</form>
@@ -470,6 +560,7 @@
 			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
 				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
 			</div>
 		</div>
@@ -507,12 +598,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 			sendGetRequest(parameter);
 		}
+	
+		// Function to display a message for a specific duration
 		function showMessage(message) {
 			const messageElement = document.createElement('div');
 			messageElement.textContent = message;
 			messageElement.classList.add('added-message');
 			document.body.appendChild(messageElement);
 	
+			// Show the message for 5 seconds
 			setTimeout(() => {
 				messageElement.style.display = 'none';
 			}, 2000);
@@ -524,10 +618,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<style>
 		.added-message {
 			position: fixed;
-			top: 50px; 
-			right: 20px; 
-			background-color: #fa6f05;
-			color: white; 
+			top: 50px; /* Adjust vertical position */
+			right: 20px; /* Adjust horizontal position */
+			background-color: #fa6f05; /* Change to orange color */
+			color: white; /* Text color */
 			padding: 10px;
 			border-radius: 5px;
 			z-index: 9999;
