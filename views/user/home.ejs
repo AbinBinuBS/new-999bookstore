@@ -1,0 +1,541 @@
+<%-include('../layout/header.ejs')-%>
+
+	<header class="header_area sticky-header">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light main_box">
+				<div class="container">
+					<a class="navbar-brand logo_h" href="index.html"><img src="img/12345.jpeg" width="100px" style="border-radius: 20px;" alt=""></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<ul class="nav navbar-nav menu_nav ml-auto">
+							<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+							<li class="nav-item "><a class="nav-link" href="/bookList">All Books</a></li>
+<<<<<<< HEAD
+=======
+							
+							<!-- <li class="nav-item submenu dropdown">
+								<a href="/product" class="nav-link dropdown-toggle"  role="button" aria-haspopup="true"
+								 aria-expanded="false"></a> -->
+								<!-- <ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+									<li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
+									<li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+									<li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+								</ul> -->
+							<!-- </li> -->
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false">Blog</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+								</ul>
+							</li>
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false">Pages</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+									<li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
+									<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+								</ul>
+							</li>
+>>>>>>> fc8eab72c714a5c12b7a73c2d7c60a5b33ce4805
+							<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous" />
+							<li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
+							<% if (user && user._id) { %>
+								<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+								<li class="nav-item "><a class="nav-link" href="/account" ><i class="fas fa-user"></i><%=user.name%></a></li>
+							<% } else { %>
+								<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+							<% } %>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+		<section class="category-area" >
+				<section class="category-area"  >
+<% if (bannerHome1 && bannerHome1.Image.length > 0){ %>
+	<section class="banner-area" style="background: url('/bannerimages/<%= bannerHome1.Image[0] %>') center no-repeat;background-size: 100%">
+<% } else { %>
+	<section class="banner-area">
+<% } %>
+		<div class="container">
+			<div class="row fullscreen align-items-center justify-content-start">
+				<div class="col-lg-12">
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="features-area section_gap">
+		<div class="container">
+			<div class="row features-inner">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="single-features">
+						<div class="f-icon">
+							<img src="/img/features/f-icon1.png" alt="">
+						</div>
+						<h6>Free Delivery</h6>
+						<p>Free Shipping on all order</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="single-features">
+						<div class="f-icon">
+							<img src="/img/features/f-icon2.png" alt="">
+						</div>
+						<h6>Return Policy</h6>
+						<p>Free return for any product</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="single-features">
+						<div class="f-icon">
+							<img src="/img/features/f-icon3.png" alt="">
+						</div>
+						<h6>24/7 Support</h6>
+						<p>Call when you need us</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="single-features">
+						<div class="f-icon">
+							<img src="/img/features/f-icon4.png" alt="">
+						</div>
+						<h6>Secure Payment</h6>
+						<p>Your payment is secure with us</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="category-area">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 col-md-12">
+					<div class="row">
+						<%if(activeCategories.length>0){
+							for(let i=0;i<activeCategories.length;i++){%>
+								<div class="col-lg-6 col-md-6">
+									<div class="single-deal">
+										<div class="overlay"></div>
+										
+										<img class="img-fluid w-100" src="/productimages/<%=activeCategories[i].Image%>" alt="">
+										<a href="/bookList?id=<%=activeCategories[i]._id%>" >
+											<div class="deal-details">
+												<h6 class="deal-title"><%=activeCategories[i].Name%></h6>
+											</div>
+										</a>
+									</div>
+								</div>
+							<%}%>
+						<%}%>
+			</div>
+		</div>
+	</section>
+	<section class="owl-carousel active-product-area section_gap">
+		<div class="single-product-slider">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
+							<h1>Latest Products</h1>
+							<p>This is the latest product and the best product you will get from any universe this books will travel you throug the entire universe</p>
+						</div>
+					</div>
+				</div>
+				<div class="row " >
+					<% if (newProduct) { %>
+						<% if (newProduct.length > 0 ) { %>
+						<% for (let i = 0; i < newProduct.length; i++) { %>
+							
+							<div class="col-lg-3 col-md-6 ">
+								<div class="single-product">
+									<a href="/product?id=<%= newProduct[i]._id %>">
+										<img class="custom-img-fluid" src="/productimages/<%= Array.isArray(newProduct[i].Image) && newProduct[i].Image.length > 0 ? newProduct[i].Image[0] : 'defaultImage.jpg' %>" alt="">
+									</a>
+									<style>
+										.custom-img-fluid {
+										max-width: 200px; 
+										max-height: 200px; 
+										}
+									</style>
+									<div class="product-details " >
+										<h6><%=newProduct[i].productName%></h6>
+										<div>
+											<h6 class="text-s" style="font-size: small; font-weight: normal;"><%= newProduct[i].Author %></h6>
+										</div>
+										
+										<div class="price">
+											<h6>₹ <%=newProduct[i].salePrice%></h6>
+											<h6 class="l-through">₹ <%=newProduct[i].productPrice%></h6>
+										</div>
+										<div class="product-details">
+											<div class="prd-bottom " style="position: absolute; bottom: 0;">
+												<a href="#" onClick="sendToCart('<%= newProduct[i]._id %>', event)" class="social-info" id="addToBag">
+													<span class="ti-bag"></span>
+													<p class="hover-text">add to bag</p>
+												</a>
+																																					  
+												<a href="" class="social-info">
+													<span class="lnr lnr-heart"></span>
+													<p class="hover-text">Wishlist</p>
+												</a>
+												<a href="" class="social-info">
+													<span class="lnr lnr-move"></span>
+													<p class="hover-text">view more</p>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+							<% } %>
+							<% }else { %>
+				 			<p>No products available</p>
+							<%  }} %>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="single-product-slider">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
+							<h1>Best Seller</h1>
+							<p>This is the bestseller books and prety faimous compare to other books and every book is a unique piece,only for a limited time period only.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<!-- single product -->
+					<% if (bestSeller) { %>
+					
+					<% if (bestSeller.length > 0) { %>
+						<% for (let i = 0; i < bestSeller.length; i++) { %>
+							<div class="col-lg-3 col-md-6">
+								<div class="single-product">
+									<a href="/product?id=<%= bestSeller[i]._id %>">
+										<img class="img-fluid image-fluid" src="/productimages/<%= Array.isArray(bestSeller[i].Image) && bestSeller[i].Image.length > 0 ? bestSeller[i].Image[0] : 'defaultImage.jpg' %>"  alt="">
+										</a>
+										<style>
+											.image-fluid {
+											max-width: 200px; 
+											max-height: 200px; 
+											}
+										</style>									
+										<div class="product-details">
+										<h6><%=bestSeller[i].productName%></h6>
+										<div>
+											<h6 class="text-s" style="font-size: small; font-weight: normal;"><%= bestSeller[i].Author %></h6>
+										</div>
+										<div class="price">
+											<h6>₹ <%=bestSeller[i].salePrice%></h6>
+											<h6 class="l-through">₹ <%=bestSeller[i].productPrice%></h6>
+										</div>
+										<div class="prd-bottom " style="position: absolute; bottom: 0;">
+											<a href="#" onClick="sendToCart('<%= bestSeller[i]._id %>', event)" class="social-info" id="addToBag">
+												<span class="ti-bag"></span>
+												<p class="hover-text">add to bag</p>
+											</a>
+											<a href="" class="social-info">
+												<span class="lnr lnr-heart"></span>
+												<p class="hover-text">Wishlist</p>
+											</a>
+											<a href="" class="social-info">
+												<span class="lnr lnr-move"></span>
+												<p class="hover-text">view more</p>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<% } %>
+							<% }else { %>
+				 			<p>No products available</p>
+							<% } } %>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		
+
+		
+		
+	</section>
+	<section class="exclusive-deal-area">
+		<div class="container-fluid">
+			<div class="row justify-content-center align-items-center">
+				<% if (bannerHome2 && bannerHome2.Image.length > 0){ %>
+					<div class="col-lg-6 no-padding exclusive-left" style="background: url('/bannerimages/<%= bannerHome2.Image[0] %>') center no-repeat;">
+						<div class="row clock_sec clockdiv" id="clockdiv">
+							<div class="col-lg-12">
+								<h1><%= bannerHome2.Text %></h1>
+							</div>
+						</div>
+						<a href="<%= bannerHome2.Target %>" class="primary-btn">Shop Now</a>
+					</div>
+				<% } else { %>
+					<div class="col-lg-6 no-padding exclusive-left"></div>
+				<% } %>
+					
+					
+				
+				<div class="col-lg-6 no-padding exclusive-right">
+					<div class="active-exclusive-product-slider">
+						<% if (bestSeller.length > 0) { %>
+							<% for (let i = 0; i < bestSeller.length; i++) { %>
+						<div class="single-exclusive-slider">
+							<a href="/product?id=<%= bestSeller[i]._id %>">
+							<img class="img-fluid" src="/productimages/<%= Array.isArray(bestSeller[i].Image) && bestSeller[i].Image.length > 0 ? bestSeller[i].Image[0] : 'defaultImage.jpg' %>" alt="">
+							</a>
+							<div class="product-details">
+
+								<div class="price">
+									<h6>₹<%=bestSeller[i].salePrice%></h6>
+									<h6 class="l-through">₹<%=bestSeller[i].productPrice%></h6>
+								</div>
+								<h4><%=bestSeller[i].productName%></h4>
+								<div class="add-bag d-flex align-items-center justify-content-center">
+									<a class="add-btn" href="" onClick="sendToCart('<%= bestSeller[i]._id %>', event)"><span class="ti-bag"></span></a>
+									<span class="add-text text-uppercase">Add to Bag</span>
+									
+								</div>
+							</div>
+						</div>
+						<% } %>
+							<% }else { %>
+				 			<p>No products available</p>
+							<% }  %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="brand-area section_gap">
+		<div class="container">
+			<div class="row">
+				<a class="col single-img" href="#">
+					<img class="img-fluid d-block mx-auto" src="/img/brand/1.png" alt="">
+				</a>
+				<a class="col single-img" href="#">
+					<img class="img-fluid d-block mx-auto" src="/img/brand/2.png" alt="">
+				</a>
+				<a class="col single-img" href="#">
+					<img class="img-fluid d-block mx-auto" src="/img/brand/3.png" alt="">
+				</a>
+				<a class="col single-img" href="#">
+					<img class="img-fluid d-block mx-auto" src="/img/brand/4.png" alt="">
+				</a>
+				<a class="col single-img" href="#">
+					<img class="img-fluid d-block mx-auto" src="/img/brand/5.png" alt="">
+				</a>
+			</div>
+		</div>
+	</section>
+	<section class="related-product-area section_gap_bottom">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-6 text-center">
+					<div class="section-title">
+						<h1>Deals of the Week</h1>
+						<p>You will never get any other books for this price this is a big sale so dont miss it.</p>
+					</div>
+				</div>
+			</div>
+			<% if (dicountProduct.length > 0) { %>
+
+			<div class="row">
+
+				  <div class="col-lg-12">
+
+					<div class="row">
+				<% for (let i = 0; i < dicountProduct.length; i++) { %>
+
+						<div class="col-lg-3 col-md-3 col-sm-6 mb-20" style="margin-bottom: 20px;">
+						  <div class="single-related-product d-flex">
+							<a href="/product?id=<%= dicountProduct[i]._id %>">
+							  <img class="imageproduct" src="/productimages/<%= Array.isArray(dicountProduct[i].Image) && dicountProduct[i].Image.length > 0 ? dicountProduct[i].Image[0] : 'defaultImage.jpg' %>" alt="" >
+							</a>
+							<style>
+								.imageproduct {
+								max-width: 100px; 
+								max-height: 100px; 
+								}
+							</style>
+							<div class="desc">
+							  <a href="#" class="title"><%= dicountProduct[i].productName %></a>
+							  <div class="price">
+								<h6>₹<%= dicountProduct[i].salePrice %></h6>
+								<h6 class="l-through">₹<%= dicountProduct[i].productPrice %></h6>
+							  </div>
+							</div>
+						  </div>
+						</div>
+					<% } %>
+
+					</div>
+
+				  </div>
+
+			  </div>
+
+			  <% } %>
+			 
+
+		</div>			
+	</section>
+	<footer class="footer-area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3  col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>About Us</h6>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
+							magna aliqua.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4  col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>Newsletter</h6>
+						<p>Stay update with our latest</p>
+						<div class="" id="mc_embed_signup">
+
+							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+							 method="get" class="form-inline">
+
+								<div class="d-flex flex-row">
+
+									<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
+									 required="" type="email">
+
+
+									<button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+									<div style="position: absolute; left: -5000px;">
+										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+									</div>
+								</div>
+								<div class="info"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3  col-md-6 col-sm-6">
+					<div class="single-footer-widget mail-chimp">
+						<h6 class="mb-20">Instragram Feed</h6>
+						<ul class="instafeed d-flex flex-wrap">
+							<li><img src="/img/i1.jpg" alt=""></li>
+							<li><img src="/img/i2.jpg" alt=""></li>
+							<li><img src="/img/i3.jpg" alt=""></li>
+							<li><img src="/img/i4.jpg" alt=""></li>
+							<li><img src="/img/i5.jpg" alt=""></li>
+							<li><img src="/img/i6.jpg" alt=""></li>
+							<li><img src="/img/i7.jpg" alt=""></li>
+							<li><img src="/img/i8.jpg" alt=""></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>Follow Us</h6>
+						<p>Let us be social</p>
+						<div class="footer-social d-flex align-items-center">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-dribbble"></i></a>
+							<a href="#"><i class="fa fa-behance"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
+				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+</p>
+			</div>
+		</div>
+	</footer>
+
+	<!-- End footer Area -->
+
+
+	<!-- =============================showing msg while adding cart======================== -->
+
+	
+	<script>
+		function sendToCart(parameter, event) {
+			event.preventDefault(); 
+	
+			function sendGetRequest(param) {
+				const url = '/addtocart?' + new URLSearchParams({ id: param });
+				
+				fetch(url, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				
+				.then(response =>  response.json()) 
+				.then(data =>{
+					console.log(data)
+					showMessage(data.message)
+				})
+				.catch(error => {
+					console.error('Error sending GET request with parameter:', error);
+				});
+			}
+	
+			sendGetRequest(parameter);
+		}
+		function showMessage(message) {
+			const messageElement = document.createElement('div');
+			messageElement.textContent = message;
+			messageElement.classList.add('added-message');
+			document.body.appendChild(messageElement);
+	
+			setTimeout(() => {
+				messageElement.style.display = 'none';
+			}, 2000);
+		}
+	</script>
+
+
+	
+	<style>
+		.added-message {
+			position: fixed;
+			top: 50px; 
+			right: 20px; 
+			background-color: #fa6f05;
+			color: white; 
+			padding: 10px;
+			border-radius: 5px;
+			z-index: 9999;
+		}
+	</style>
+	
+	<!-- ========================================end of msg============================== -->
+
+	
+
+    <%-include('../layout/footer.ejs')-%>

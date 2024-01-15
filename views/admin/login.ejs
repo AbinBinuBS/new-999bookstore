@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <title>Evara Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets1/imgs/theme/favicon.svg">
+    <link href="/assets1/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <main>
+        <header class="main-header style-2 navbar">
+            <div class="col-brand">
+                <a href="index.html" class="brand-wrap">
+                    <img src="/assets1/imgs/theme/logo.svg" class="logo" alt="Evara Dashboard">
+                </a>
+            </div>
+            <div class="col-nav">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </header>
+        <section class="content-main mt-80 mb-80">
+            <div class="card mx-auto card-login">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Log In</h4>
+                    <form method="post" action="" onsubmit="return validateForm()">
+                        <div class="mb-3">
+                            <input class="form-control" name="email" placeholder="Username or email" value="abinbinu1827@gmail.com" type="email" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" name="password" placeholder="Password" value="12345678" type="password" required>
+                            <div class="invalid-feedback">Please enter your password.</div>
+                        </div>
+                        <div class="mb-3">
+                            <% if(typeof message !== 'undefined') { %>
+                                <p style="color:green"><%= message %></p>
+                            <% } %>
+                        </div>
+                        <div class="mb-4">
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </div>
+                    </form>    
+        </section>
+        <footer class="main-footer text-center">
+            <p class="font-xs">
+                <script>
+                document.write(new Date().getFullYear())
+                </script> ©, 999bookstore - THE BOOK YOU NEED .
+            </p>
+            <p class="font-xs mb-30">All rights reserved</p>
+        </footer>
+    </main>
+    <script src="/assets1/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/assets1/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/assets1/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/assets1/js/main.js" type="text/javascript"></script>
+    <script>
+        function validateForm() {
+            var form = document.getElementsByTagName('form')[0];
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+            return form.checkValidity();
+        }
+    </script>
+</body>
+
+
+</html>

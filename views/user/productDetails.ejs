@@ -1,0 +1,395 @@
+
+<%-include('../layout/header.ejs')-%>
+<style>
+	.added-message {
+		position: fixed;
+		top: 50px; 
+		right: 20px; 
+		background-color: #fa6f05;
+		color: white; 
+		padding: 10px;
+		border-radius: 5px;
+		z-index: 9999;
+	}
+</style>
+
+<header class="header_area sticky-header">
+	<div class="main_menu">
+		<nav class="navbar navbar-expand-lg navbar-light main_box">
+			<div class="container">
+				<a class="navbar-brand logo_h" href="index.html"><img src="img/12345.jpeg" width="100px" style="border-radius: 20px;" alt=""></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+					<ul class="nav navbar-nav menu_nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+						<li class="nav-item "><a class="nav-link" href="/bookList">All Books</a></li>
+						<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous" />
+						<li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
+						<%if(userData){%>
+							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+							<li class="nav-item "><a class="nav-link" href="/account" ><i class="fas fa-user"></i><%=userData.name%></a></li>
+						<%}else{%>
+							<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+						<%}%>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"></span></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>Product Details Page</h1>
+					<nav class="d-flex align-items-center">
+						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
+						<a href="single-product.html">product-details</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+			 <div class="container">
+				<div class="row s_product_inner">
+					<div class="col-md-6 col-sm-12 col-xs-12">
+						<div>
+							<div class="product-image-slider">
+								<% for (let i = 1; i < product.Image.length; i++) { %>
+									<figure class="border-radius-10">
+										<a href="/productimages/<%= product.Image[i] %>" class="MagicZoom">
+											<img src="/productimages/<%= product.Image[i] %>" alt="product image"  style="width: 900px; height: 700px;" >
+										</a>
+									</figure>
+								<% } %>
+							</div>
+							<div class="slider-nav-thumbnails pl-0 pr-15">
+								<% for (let i = 1; i < product.Image.length; i++) { %>
+									<div style="display: inline-block; margin-right: 10px;">
+										<img src="/productimages/<%= product.Image[i] %>" alt="product image" style="height: 50px; width: 50px;">
+									</div>
+								<% } %>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6 col-sm-12 col-xs-12 mt-5">
+						<div class="s_product_text">
+							<h3><%= product.productName %></h3>
+							<hr>
+							<div class="price">
+								<h2 style="display: inline-block; margin-right: 10px;">₹<%= product.salePrice %></h2>
+								<h6 style="text-decoration: line-through; display: inline-block; font-size: smaller;">₹<%= product.productPrice %></h6>
+							</div>							
+							<hr>
+							<ul class="list">
+								<li><a class="active" href="#"><span>Author</span> : <%= product.Author %></a></li>
+								<li><a class="active" href="#"><span>Category</span> : <%= product.Category.Name %></a></li>
+								<li>
+									<a href="#">
+										<span>Availability</span> :
+										<% if (product.Quantity > 0) { %>
+											<span style="color: green;">In Stock</span>
+										<% } else { %>
+											<span style="color: red;">Out Of Stock</span>
+										<% } %>
+									</a>
+								</li>
+							</ul>
+							<form id="addToCartForm" action="/cart?id=<%= product._id %>&qty=" method="post" onsubmit="appendQty()">
+							<div class="product_count">
+								<label for="qty">Quantity:</label>
+								<input type="hidden" name="hai" value="hai i am here">
+								<input type="number" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+								<button onclick="incrementQuantity()" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+								<button onclick="decrementQuantity()" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+							</div>
+							<div class="card_area">
+								<button class="primary-btn" style="border:none">Add to Cart</button>
+								<i class="lnr lnr-heart lnr-2x"></i>
+							</div>
+							
+
+							
+							<div>
+								<p><%= product.Description %></p>
+							</div>
+						</form>				
+						</div>
+					</div>
+				</div>
+			</div>
+	<!--================End Single Product Area =================-->
+
+	<!--================Product Description Area =================-->
+	<section >
+		<div class="container">
+			<div>
+				<h3>Product Details</h3>
+				<hr class="wp-block-separator is-style-wide">
+			</div>
+			
+				<div class="mt-5">
+					<li>
+						<a href="#" style="color: black;">
+							<span style=" font-weight: bold;">Author</span> : <%= product.Author %>
+						</a>
+					</li>
+					<li>
+						<a href="#" style="color: black;">
+							<span style=" font-weight: bold;">Publisher</span> : <%= product.Publisher %>
+						</a>
+					</li>
+					<li>
+						<a href="#" style="color: black;">
+							<span style=" font-weight: bold;">Language</span> :  English 
+						</a>
+					</li>
+					<li>
+						<a href="#" style="color: black;">
+							<span style=" font-weight: bold;">Category</span> :  <%= product.Category.Name %>
+						</a>
+					</li>
+					<li>
+						<a href="#" style="color: black;">
+							<span style=" font-weight: bold;">Hardcover</span> : <%= product.Pages %> &nbsppages
+						</a>
+					</li>
+					<li>
+						<a href="#" style="color: black;">
+							<span style=" font-weight: bold;">Item Weight</span> : <%= product.Weight %> &nbsp g
+						</a>
+					</li>
+					<li>
+						<a href="#" style="color: black;">
+							<span style=" font-weight: bold;">Country of Origin</span> : <%= product.Country %>
+						</a>
+					</li>
+					<li>
+						<a href="#" style="color: black;">
+							<span style=" font-weight: bold;">Generic Name</span> : Book
+						</a>
+					</li> 
+				
+				
+		</div>
+	</div>
+		
+	</section>
+	<section>
+	
+	<div class="product_description_area ">
+		<div class="container">
+			
+				<h3>About author</h3>
+				<hr class="wp-block-separator is-style-wide">
+				<p><%=product.aboutAuthor %></p>
+		</div>
+		
+	</div>
+	</section>
+	
+	<hr>       
+	<section class="related-product-area section_gap_bottom">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-6 text-center">
+					<div class="section-title">
+						<h1>Similar Product</h1>
+						<p>The similar product that might interest you.</p>
+					</div>
+				</div>
+			</div>
+			<% if (similarproduct.length > 0) { %>
+				<div class="row">
+					<% for (let i = 0; i < similarproduct.length; i++) { %>
+						<div class="col-lg-3 col-md-3 col-sm-6 mb-20">
+							<div class="single-related-product">
+								<a href="/product?id=<%= similarproduct[i]._id %>">
+									<img class="img-fluid" src="/productimages/<%= Array.isArray(similarproduct[i].Image) && similarproduct[i].Image.length > 0 ? similarproduct[i].Image[0] : 'defaultImage.jpg' %>"  alt="">
+								</a>
+								<div class="desc">
+									<a href="#" class="title"><%= similarproduct[i].productName %></a>
+									<div class="price">
+										<h6>₹<%= similarproduct[i].salePrice %></h6>
+										<h6 class="l-through">₹<%= similarproduct[i].productPrice %></h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<% if ((i + 1) % 4 === 0) { %>
+							</div><div class="row"> 
+						<% } %>
+					<% } %>
+				</div>
+			<% } %>
+						
+	</section>
+	<footer class="footer-area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3  col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>About Us</h6>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
+							magna aliqua.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4  col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>Newsletter</h6>
+						<p>Stay update with our latest</p>
+						<div class="" id="mc_embed_signup">
+
+							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+							 method="get" class="form-inline">
+
+								<div class="d-flex flex-row">
+
+									<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
+									 required="" type="email">
+
+
+									<button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+									<div style="position: absolute; left: -5000px;">
+										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+									</div>
+								</div>
+								<div class="info"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3  col-md-6 col-sm-6">
+					<div class="single-footer-widget mail-chimp">
+						<h6 class="mb-20">Instragram Feed</h6>
+						<ul class="instafeed d-flex flex-wrap">
+							<li><img src="img/i1.jpg" alt=""></li>
+							<li><img src="img/i2.jpg" alt=""></li>
+							<li><img src="img/i3.jpg" alt=""></li>
+							<li><img src="img/i4.jpg" alt=""></li>
+							<li><img src="img/i5.jpg" alt=""></li>
+							<li><img src="img/i6.jpg" alt=""></li>
+							<li><img src="img/i7.jpg" alt=""></li>
+							<li><img src="img/i8.jpg" alt=""></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>Follow Us</h6>
+						<p>Let us be social</p>
+						<div class="footer-social d-flex align-items-center">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-dribbble"></i></a>
+							<a href="#"><i class="fa fa-behance"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
+				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+</p>
+			</div>
+		</div>
+	</footer>
+	<script src="assets2/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="assets2/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="assets2/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="assets2/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="assets2/js/plugins/slick.js"></script>
+    <script src="assets2/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="assets2/js/plugins/wow.js"></script>
+    <script src="assets2/js/plugins/jquery-ui.js"></script>
+    <script src="assets2/js/plugins/perfect-scrollbar.js"></script>
+    <script src="assets2/js/plugins/magnific-popup.js"></script>
+    <script src="assets2/js/plugins/select2.min.js"></script>
+    <script src="assets2/js/plugins/waypoints.js"></script>
+    <script src="assets2/js/plugins/counterup.js"></script>
+    <script src="assets2/js/plugins/jquery.countdown.min.js"></script>
+    <script src="assets2/js/plugins/images-loaded.js"></script>
+    <script src="assets2/js/plugins/isotope.js"></script>
+    <script src="assets2/js/plugins/scrollup.js"></script>
+    <script src="assets2/js/plugins/jquery.vticker-min.js"></script>
+    <script src="assets2/js/plugins/jquery.theia.sticky.js"></script>
+    <script src="assets2/js/plugins/jquery.elevatezoom.js"></script>
+    <script src="assets2/js/maind134.js?v=3.4"></script>
+    <script src="assets2/js/shopd134.js?v=3.4"></script>
+	<script>
+		function appendQty() {
+			const qtyValue = document.getElementById('sst').value;
+			const form = document.getElementById('addToCartForm');
+			const action = form.getAttribute('action');
+			form.setAttribute('action', action + qtyValue);
+		}
+	
+		function incrementQuantity() {
+			const result = document.getElementById('sst');
+			let sst = result.value;
+			if (!isNaN(sst)) {
+				result.value++;
+			}
+		}
+	
+		function decrementQuantity() {
+			const result = document.getElementById('sst');
+			let sst = result.value;
+			if (!isNaN(sst) && sst > 1) {
+				result.value--;
+			}
+		}
+	</script>
+	<script>
+		document.getElementById('addToCartForm').addEventListener('submit', function(event) {
+			event.preventDefault(); 
+			
+			const form = event.target;
+			const formData = new FormData(form); 
+			
+			formData.append('qty', '1');
+			fetch(form.action, {
+				method: 'POST',
+				body: formData
+			})
+			.then(response => {
+				if (response.ok) {
+					window.location.href = '/cart';
+				} else {
+					return response.json();
+				}
+			})
+			.then(data => {
+				if (data && data.message) {
+					showMessage(data.message); 
+				}
+			})
+			.catch(error => {
+				console.error('Error:', error);
+			});
+		});
+	
+		function showMessage(message) {
+			const messageElement = document.createElement('div');
+			messageElement.textContent = message;
+			messageElement.classList.add('added-message');
+			document.body.appendChild(messageElement);
+			setTimeout(() => {
+				messageElement.style.display = 'none';
+			}, 5000); 
+		}
+	</script>
+	
+<%-include('../layout/footer.ejs')-%>
