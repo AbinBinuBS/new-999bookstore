@@ -35,7 +35,6 @@ admin_route.get('/logout',adminAuth.isLogin,adminController.adminLogout)
 
 admin_route.get('/dashboard',adminAuth.isLogin,adminController.adminDashboard)
 admin_route.get('/report',adminAuth.isLogin,adminController.reportDetails)
-// admin_route.post('/report',adminAuth.isLogin,adminController.salesReport)
 admin_route.get('/customer',adminAuth.isLogin,adminController.customerList)
 admin_route.get('/activeuser',adminAuth.isLogin,adminController.activeList)
 admin_route.get('/Unactive-user',adminAuth.isLogin,adminController.uactiveList)
