@@ -316,15 +316,22 @@ const productManagement = async (req, res) => {
   }
 };
 
-const loadProduct = async (req, res) => {
-  try {
-    // const productsData = await Category.find({});
-    res.render("home");
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// const loadProduct = async (req, res) => {
+//   try {
+//     const productsData = await Category.find({});
+//     res.render("addProduct", { product: productsData });
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
+const loadAddProduct = async(req,res)=>{
+  try{
+    res.render('banner')
+  }catch(error){
+    console.log(error.message)
+  }
+} 
 
 
 const addProduct = async (req, res) => {
@@ -1138,7 +1145,8 @@ module.exports = {
   uactiveList,
   customerBlock,
   productManagement,
-  loadProduct,
+  // loadProduct,
+  loadAddProduct,
   addProduct,
   loadEditProduct,
   editProduct,

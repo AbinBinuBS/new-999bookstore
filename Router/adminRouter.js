@@ -43,7 +43,8 @@ admin_route.post('/blockCustomer',adminAuth.isLogin,adminController.customerBloc
 
 admin_route.get('/product',adminAuth.isLogin,adminController.productManagement)
 
-admin_route.get('/addproduct',adminAuth.isLogin,adminController.loadProduct)
+admin_route.get('/add-product',adminController.loadProduct)
+// admin_route.get('/addproduct',adminAuth.isLogin,adminController.loadProduct)
 admin_route.post('/addproduct',adminAuth.isLogin,upload.array('image',5),adminController.addProduct)
 
 admin_route.get('/edit-product',adminAuth.isLogin,adminController.loadEditProduct)
