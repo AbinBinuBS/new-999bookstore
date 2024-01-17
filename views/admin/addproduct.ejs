@@ -1,11 +1,337 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hai i am here</h1>
+<%-include('header.ejs')%>
+        <section class="content-main">
+            <form id="productForm" action="" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="content-header">
+                            <h2 class="content-title">Add New Book</h2>
+                            <div>
+                                <button type="submit" class="btn btn-md rounded font-sm hover-up">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Book Details</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label for="product_name" class="form-label">Book Name</label>
+                                    <input type="text" placeholder="Type here" name="pname" class="form-control" id="product_name">
+                                    <span id="pnameError" class="text-danger"></span>
+                                </div>
+                                <% if(typeof message !== 'undefined') { %>
+                                    <p style="color:green"><%= message %></p>
+                                <% }else{ %>
+                                    <%}%>
+                                <div class="mb-4">
+                                    <label class="form-label">Full description</label>
+                                    <textarea placeholder="Type here" name="description" class="form-control" rows="4"></textarea>
+                                    <span id="descriptionError" class="text-danger"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <label class="form-label">Regular price</label>
+                                            <input placeholder="₹" type="text" name="pprice" class="form-control">
+                                            <span id="ppriceError" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <label class="form-label">Sale Price</label>
+                                            <input placeholder="₹" type="text" name="sprice" class="form-control">
+                                            <span id="spriceError" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <label class="form-label">Quantity</label>
+                                            <input placeholder="₹" type="text" name="quantity" class="form-control">
+                                            <span id="quantityError" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Additional Details</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <label for="author" class="form-label">Author</label>
+                                            <input type="text" placeholder="Type here" name="author"  class="form-control" id="author">
+                                            <span id="authorError" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <label for="publisher" class="form-label">Publisher</label>
+                                            <input type="text" placeholder="Type here" name="publisher" class="form-control" id="publisher">
+                                            <span id="publisherError" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <label for="pages" class="form-label">No Of Pages</label>
+                                            <input type="text" placeholder="Number" name="pages" class="form-control" id="pages">
+                                            <span id="pagesError" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <label for="bweight" class="form-label">Book Weight</label>
+                                            <input type="text" placeholder="Number" class="form-control" name="bweight" id="bweight">
+                                            <span id="bweightError" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">About The Author</label>
+                                        <textarea placeholder="Type here" class="form-control" name="aabout" id="aabout" rows="4"></textarea>
+                                        <span id="aaboutError" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Media</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="input-upload">
+                                    <input class="form-control" name="image" accept="image/*" type="file" multiple required>
+                                </div>
+                                <div>
+                                    <input type="checkbox" value="yes" id="tickOption" name="tickOption">
+                                    <label for="tickOption">Crop Image</label>
+                                </div>
+                                <% if(typeof imgMessage !== 'undefined') { %>
+                                    <p style="color:red"><%= imgMessage %></p>
+                                <% } else{ %>
+                                    <%}%>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Organization</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row gx-2">
+                                    <div class="col-sm-6 mb-3">
+                                        <label class="form-label">Category</label>
+                                        <select name="category" class="form-select" id="category">
+                                            <option value="" selected disabled>Choose a category</option>
+                                            <% if(product.length > 0) { %>
+                                                <% for(let i = 0; i < product.length; i++) { %>
+                                                    <option value="<%= product[i].Name %>"><%= product[i].Name %></option>
+                                                <% } %>
+                                            <% }else{ %>
+                                                <%}%>
+                                        </select>
+                                        <span id="categoryError" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-sm-6 mb-3">
+                                        <label class="form-label">Country</label>
+                                        <select name="country" class="form-select" id="country">
+                                            <option value="" selected disabled>Choose a country</option>
+                                            <option>America</option>
+                                            <option>India</option>
+                                            <option>Russia</option>
+                                            <option>China</option>
+                                        </select>
+                                        <span id="countryError" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                    document.write(new Date().getFullYear())
+                    </script> ©, 999bookstore.
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="/assets1/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/assets1/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/assets1/js/vendors/select2.min.js"></script>
+    <script src="/assets1/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/assets1/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/assets1/js/main.js" type="text/javascript"></script>
+    <script>
+        const form = document.getElementById('productForm');
+    
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+    
+            const pname = document.getElementById('product_name').value;
+            const description = document.querySelector('textarea[name="description"]').value;
+            const pprice = document.querySelector('input[name="pprice"]').value;
+            const sprice = document.querySelector('input[name="sprice"]').value;
+            const quantity = document.querySelector('input[name="quantity"]').value;
+            const author = document.getElementById('author').value;
+            const publisher = document.getElementById('publisher').value;
+            const pages = document.getElementById('pages').value;
+            const bweight = document.getElementById('bweight').value;
+            const aabout = document.getElementById('aabout').value;
+            const category = document.getElementById('category').value;
+            const country = document.getElementById('country').value;
+    
+            document.querySelectorAll('.text-danger').forEach(element => element.textContent = '');
+    
+            if (pname.trim() === '') {
+                document.getElementById('pnameError').textContent = 'Book Name is required.';
+                return false;
+            }
+
+            if (description.trim().length < 20) {
+                document.getElementById('descriptionError').textContent = 'Description should be at least 20 characters.';
+                return false;
+            }
+
+            if (pprice.trim() === '') {
+                document.getElementById('ppriceError').textContent = 'Product price is required.';
+                return false;
+            }
+
+            if (isNaN(pprice)) {
+                document.getElementById('ppriceError').textContent = 'Regular Price should be a number.';
+                return false;
+            }
+
+            if (pprice<0) {
+                document.getElementById('ppriceError').textContent = 'Product Price should be a positive number.';
+                return false;
+            }
+
+            if (sprice.trim() === '') {
+                document.getElementById('spriceError').textContent = 'Sale price is required.';
+                return false;
+            }
+
+            if (isNaN(sprice)) {
+                document.getElementById('spriceError').textContent = 'Sale Price should be a number.';
+                return false;
+            }
+
+            const spriceValue = parseFloat(sprice);
+            const ppriceValue = parseFloat(pprice); 
+
+            if (spriceValue > ppriceValue) {
+                document.getElementById('spriceError').textContent = 'Sale Price should be less than product price.';
+                return false;
+            }
+
+            if (sprice<0) {
+                document.getElementById('spriceError').textContent = 'Sale Price should be a positive number.';
+                return false;
+            }
+
+             if (quantity.trim() === '') {
+                document.getElementById('quantityError').textContent = 'quantity is required.';
+                return false;
+            }
+
+            if (isNaN(quantity)) {
+                document.getElementById('quantityError').textContent = 'Quantity should be a number.';
+                return false;
+            }
+
+            if (quantity<0) {
+                document.getElementById('quantityError').textContent = 'Quantity should be a positive number.';
+                return false;
+            }
+
+            if (author.trim() === '') {
+                document.getElementById('authorError').textContent = 'Author name is required.';
+                return false;
+            }
+
+            if (/\d/.test(author)) {
+            document.getElementById('authorError').textContent = 'Author name should not be a numbers.';
+            return false;
+            }
+
+            if (publisher.trim() === '') {
+                document.getElementById('publisherError').textContent = 'Publisher name is required.';
+                return false;
+            }
+
+            if (/\d/.test(publisher)) {
+            document.getElementById('publisherError').textContent = 'Publisher name should not be a numbers.';
+            return false;
+            }
+            
+            if (category.trim() === '') {
+                document.getElementById('categoryError').textContent = ' Category is required.';
+                return false;
+            }
+    
+            if (country.trim() === '') {
+                document.getElementById('countryError').textContent = ' Country is required.';
+                return false;
+            }
+
+            if (pages.trim() === '') {
+                document.getElementById('pagesError').textContent = 'pages is required.';
+                return false;
+            }
+
+            if (isNaN(pages)) {
+                document.getElementById('pagesError').textContent = 'Number of Pages should be a number.';
+                return false;
+            }
+
+            if (pages<0) {
+                document.getElementById('pagesError').textContent = 'Number of Pages should be a positive number.';
+                return false;
+            }
+
+            if (bweight.trim() === '') {
+                document.getElementById('bweightError').textContent = 'bweight is required.';
+                return false;
+            }
+
+            if (isNaN(bweight)) {
+                document.getElementById('bweightError').textContent = 'Book Weight should be a number.';
+                return false;
+            }
+
+            if (bweight<0) {
+                document.getElementById('bweightError').textContent = 'Book weight be a positive number.';
+                return false;
+            }
+
+            if (aabout.trim().length < 20) {
+                document.getElementById('aaboutError').textContent = 'About the Author should be at least 20 characters.';
+                return false;
+            }
+
+
+            this.submit();
+        });
+    </script>
+    
 </body>
 </html>
+
+
+
+
