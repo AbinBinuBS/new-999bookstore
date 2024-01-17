@@ -318,12 +318,13 @@ const productManagement = async (req, res) => {
 
 const loadProduct = async (req, res) => {
   try {
-    // const productsData = await Category.find({});
-    res.render("addProduct");
+   
+    res.render("banner");
   } catch (error) {
     console.log(error.message);
   }
 };
+
 
 
 
