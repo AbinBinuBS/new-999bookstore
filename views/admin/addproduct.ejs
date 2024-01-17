@@ -23,7 +23,8 @@
                                 </div>
                                 <% if(typeof message !== 'undefined') { %>
                                     <p style="color:green"><%= message %></p>
-                                <% } %>
+                                <% }else{ %>
+                                    <%}%>
                                 <div class="mb-4">
                                     <label class="form-label">Full description</label>
                                     <textarea placeholder="Type here" name="description" class="form-control" rows="4"></textarea>
@@ -112,7 +113,8 @@
                                 </div>
                                 <% if(typeof imgMessage !== 'undefined') { %>
                                     <p style="color:red"><%= imgMessage %></p>
-                                <% } %>
+                                <% } else{ %>
+                                    <%}%>
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -125,11 +127,12 @@
                                         <label class="form-label">Category</label>
                                         <select name="category" class="form-select" id="category">
                                             <option value="" selected disabled>Choose a category</option>
-                                            <!-- <% if(product.length > 0) { %>
+                                            <% if(product.length > 0) { %>
                                                 <% for(let i = 0; i < product.length; i++) { %>
                                                     <option value="<%= product[i].Name %>"><%= product[i].Name %></option>
                                                 <% } %>
-                                            <% } %> -->
+                                            <% }else{ %>
+                                                <%}%>
                                         </select>
                                         <span id="categoryError" class="text-danger"></span>
                                     </div>

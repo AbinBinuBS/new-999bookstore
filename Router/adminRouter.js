@@ -35,6 +35,7 @@ admin_route.get('/logout',adminAuth.isLogin,adminController.adminLogout)
 
 admin_route.get('/dashboard',adminAuth.isLogin,adminController.adminDashboard)
 admin_route.get('/report',adminAuth.isLogin,adminController.reportDetails)
+// admin_route.post('/report',adminAuth.isLogin,adminController.salesReport)
 admin_route.get('/customer',adminAuth.isLogin,adminController.customerList)
 admin_route.get('/activeuser',adminAuth.isLogin,adminController.activeList)
 admin_route.get('/Unactive-user',adminAuth.isLogin,adminController.uactiveList)
@@ -43,8 +44,7 @@ admin_route.post('/blockCustomer',adminAuth.isLogin,adminController.customerBloc
 
 admin_route.get('/product',adminAuth.isLogin,adminController.productManagement)
 
-admin_route.get('/add-product',adminController.loadProduct)
-// admin_route.get('/addproduct',adminAuth.isLogin,adminController.loadProduct)
+admin_route.get('/addproduct',adminAuth.isLogin,adminController.loadProduct)
 admin_route.post('/addproduct',adminAuth.isLogin,upload.array('image',5),adminController.addProduct)
 
 admin_route.get('/edit-product',adminAuth.isLogin,adminController.loadEditProduct)
