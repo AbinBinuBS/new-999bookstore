@@ -1,7 +1,6 @@
 <%-include('header.ejs')%>
 
         <section class="content-main">
-            <!-- i just changed the id id="productForm" -->
             <form  id="myForm" action="" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-9">
@@ -105,8 +104,6 @@
                             <div class="card-header">
                                 <h4>Media</h4>
                             </div>
-                               
-
                                 <div class="card-body">
                                     <% if (products && products.Image && products.Image.length > 0) { %>
                                         <% for (let i = 0; i < products.Image.length; i++) { %>
@@ -132,13 +129,7 @@
                                     <% if(typeof imgMessage !== 'undefined') { %>
                                         <p style="color:red"><%= imgMessage %></p>
                                     <% } %>
-                                </div>
-                                
-                             
-                                
-                                
-                                
-                                
+                                </div> 
                             </form>
                         </div>
                         <div class="card mb-4">
@@ -177,14 +168,12 @@
                 </div>
             </form>
         </section>
-
-            <!-- content-main end// -->
         <footer class="main-footer font-xs">
             <div class="row pb-30 pt-15">
                 <div class="col-sm-6">
                     <script>
                     document.write(new Date().getFullYear())
-                    </script> ©, Evara - HTML Ecommerce Template .
+                    </script> ©, 999bookstore .
                 </div>
                 <div class="col-sm-6">
                     <div class="text-sm-end">
@@ -199,18 +188,12 @@
     <script src="/assets1/js/vendors/select2.min.js"></script>
     <script src="/assets1/js/vendors/perfect-scrollbar.js"></script>
     <script src="/assets1/js/vendors/jquery.fullscreen.min.js"></script>
-    <!-- Main Script -->
     <script src="/assets1/js/main.js" type="text/javascript"></script>
-
-  <!-- ======================validation====================== -->
-
-
     <script>
        function submitForm1() {
     const pname = document.getElementById('product_name').value.trim();
     const description = document.querySelector('textarea[name="description"]').value.trim();
     const pprice = document.querySelector('input[name="pprice"]').value.trim();
-    // ... (other field values)
     const sprice = document.querySelector('input[name="sprice"]').value;
     const quantity = document.querySelector('input[name="quantity"]').value;
     const author = document.getElementById('author').value;
@@ -355,12 +338,6 @@
             document.getElementById('myForm').submit();
 }
     </script>
-
-     <!-- ====================== end of validation====================== -->
-
-     <!-- ====================== Displaying img in frontend====================== -->
-
-
      <script>
         function displaySelectedImages(event) {
             const selectedImagesContainer = document.getElementById('selectedImagesContainer');
@@ -390,19 +367,9 @@
             }
         }
     
-        // function handleRemove(imagePath) {
-        //     console.log(`Removing image: ${imagePath}`);
-        // }
     </script>
-
-     <!-- ====================== end of Displaying img in frontend====================== -->
-
-
-    <!-- ====================sending image to backend================ -->
-
     <script>
         const removedImages = [];
-    
         function handleRemove(imageURL) {
         removedImages.push(imageURL);
         console.log('Removed Image URL:', imageURL);
@@ -418,22 +385,9 @@
             const hiddenInput = document.getElementById('removedImagesInput');
             hiddenInput.value = JSON.stringify(removedImages);
             const form = document.getElementById('myForm');
-            // form.submit();
         }
     </script>
-
-    
-    <!-- ====================sending image to backend================ -->
-
-
-
-    
-
-
 </body>
-
-
-<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/page-form-product-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:33:32 GMT -->
 </html>
 
 

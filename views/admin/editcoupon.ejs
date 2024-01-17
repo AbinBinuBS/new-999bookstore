@@ -5,10 +5,6 @@
                 <div class="col-9">
                     <div class="content-header">
                         <h2 class="content-title">Edit Coupon</h2>
-                        <div>
-                            <button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Save to draft</button>
-                            <button class="btn btn-md rounded font-sm hover-up">Publich</button>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -18,7 +14,6 @@
                         </div>
                         <div class="card-body">
                             <form action="" id="addingForm" method="POST">
-                                <!-- Coupon Name -->
                                 <div class="mb-4">
                                     <label for="couponname" class="form-label">Coupon Name</label>
                                     <input type="text" name="couponname" value="<%=couponData.couponCode%>" class="form-control" id="couponname">
@@ -35,23 +30,17 @@
                                     <input type="date" name="expdate" value="<%=formattedDate%>" class="form-control" id="couponDate">
                                     <div id="expiryDateError" class="error" style=" color: red; display: none;"></div>
                                 </div>
-                            
-                                <!-- Flat Discount -->
                                 <div class="mb-4">
                                     <label class="form-label">Flat Discount</label>
                                     <input name="discount" value="<%=couponData.Discount%>" type="text" id="discount" class="form-control">
                                     <div id="discountError" class="error" style=" color: red; display: none;"></div>
                                 </div>
-                            
-                                <!-- Limit -->
                                 <div class="mb-4">
                                     <label class="form-label">Limit</label>
                                     <input type="text" value="<%=couponData.Limit%>" name="limit" class="form-control" id="limit">
                                     <input type="hidden" value="<%=couponData._id%>" name="id" id="couponid1">
                                     <div id="limitError" class="error" style=" color: red; display: none;"></div>
                                 </div>
-                            
-                                <!-- Minimum Purchase -->
                                 <div class="mb-4">
                                     <label class="form-label">Minimum Purchase</label>
                                     <input type="text" value="<%=couponData.minPurchase%>" name="minPurchase" class="form-control" id="minPurchase">
@@ -62,163 +51,18 @@
                                     <button type="button" onclick="validateForm()" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
-                            <script>
-
-
-                                function submitForm(){
-                                    const couponname = document.getElementById('couponname').value
-                                    const couponDate = document.getElementById('couponDate').value
-                                    const discount = document.getElementById('discount').value
-                                    const minPurchase = document.getElementById('minPurchase').value
-                                    const limit = document.getElementById('limit').value
-                                    const id = document.getElementById('couponid1').value
-                                    fetch('/admin/editCoupon',{
-                                        method:'POST',
-                                        headers:{
-                                            'Content-Type':'application/json'
-                                        },
-                                        body:JSON.stringify({
-                                            
-                                            couponname:couponname,
-                                            couponDate:couponDate,
-                                            discount:discount,
-                                            limit:limit,
-                                            minPurchase:minPurchase,
-                                            id:id
-                                        })
-                                    })
-                                    .then(res=>{
-                                        if(res.ok){
-                                            return res.json()
-                                        }
-                                    })
-                                    .then(data => {
-                                        if (data.message == 'Success') {
-                                            console.log("success");
-                                            window.location.href = '/admin/coupon';
-                                        }else if(data.message == 'Failed'){
-                                            couponNameError.innerText = 'Coupon Name already exist..';
-                                            couponNameError.style.display = 'block';
-                                        }
-                                    })
-                                    .catch(err=>{
-                                        console.log(err.message)
-                                    })
-                                }
-
-
-
-
-
-
-                                function validateForm() {
-                                    let isValid = true;
-                            
-                                    const couponName = document.getElementById('couponname');
-                                    const couponDate = document.getElementById('couponDate');
-                                    const discount = document.getElementById('discount');
-                                    const limit = document.getElementById('limit');
-                                    const minPurchase = document.getElementById('minPurchase');
-                            
-                                    const couponNameError = document.getElementById('couponNameError');
-                                    const expiryDateError = document.getElementById('expiryDateError');
-                                    const discountError = document.getElementById('discountError');
-                                    const limitError = document.getElementById('limitError');
-                                    const minPurchaseError = document.getElementById('minPurchaseError');
-                            
-                                    if (couponName.value.trim() === '') {
-                                        couponNameError.innerText = 'Coupon Name is required';
-                                        couponNameError.style.display = 'block';
-                                        isValid = false;
-                                    } else {
-                                        couponNameError.style.display = 'none';
-                                    }
-                            
-                            
-                                    if (couponDate.value === '') {
-                                        expiryDateError.innerText = 'Expiry Date is required';
-                                        expiryDateError.style.display = 'block';
-                                        isValid = false;
-                                    } else {
-                                        expiryDateError.style.display = 'none';
-                                    }
-                            
-                                    
-                                    if (discount.value.trim() === '') {
-                                        discountError.innerText = 'Flat Discount is required';
-                                        discountError.style.display = 'block';
-                                        isValid = false;
-                                    } else if (isNaN(discount.value)) {
-                                        discountError.innerText = 'Flat Discount must be a number';
-                                        discountError.style.display = 'block';
-                                        isValid = false;
-                                    } else if (parseFloat(discount.value) < 0) {
-                                        discountError.innerText = 'Flat Discount cannot be negative';
-                                        discountError.style.display = 'block';
-                                        isValid = false;
-                                    } else {
-                                        discountError.style.display = 'none';
-                                    }
-                            
-                                 
-                                    if (limit.value.trim() === '') {
-                                        limitError.innerText = 'Limit is required';
-                                        limitError.style.display = 'block';
-                                        isValid = false;
-                                    } else if (isNaN(limit.value)) {
-                                        limitError.innerText = 'Limit must be a number';
-                                        limitError.style.display = 'block';
-                                        isValid = false;
-                                    } else if (parseFloat(limit.value) < 0) {
-                                        limitError.innerText = 'Limit cannot be negative';
-                                        limitError.style.display = 'block';
-                                        isValid = false;
-                                    } else {
-                                        limitError.style.display = 'none';
-                                    }
-                            
-                                    // Validation for min purchase (dummy validation)
-                                    if (minPurchase.value.trim() === '') {
-                                        minPurchaseError.innerText = 'Minimum Purchase is required';
-                                        minPurchaseError.style.display = 'block';
-                                        isValid = false;
-                                    } else if (isNaN(minPurchase.value)) {
-                                        minPurchaseError.innerText = 'Minimum Purchase must be a number';
-                                        minPurchaseError.style.display = 'block';
-                                        isValid = false;
-                                    } else if (parseFloat(minPurchase.value) < 0) {
-                                        minPurchaseError.innerText = 'Minimum Purchase cannot be negative';
-                                        minPurchaseError.style.display = 'block';
-                                        isValid = false;
-                                    } else if (parseFloat(minPurchase.value) < parseFloat(discount .value)) {
-                                    minPurchaseError.innerText = 'Minimum Purchase cannot be less than Discound';
-                                    minPurchaseError.style.display = 'block';
-                                    isValid = false;
-                                    } else {
-                                        minPurchaseError.style.display = 'none';
-                                    }
-                            
-                                    if(isValid===true){
-                                        const addingForm = document.getElementById('addingForm')
-                                        submitForm()
-                                    }else{
-                                        console.log("fucked up")
-                                        return false
-                                    }
-                                }
-                            </script>
                         </div>
-                    </div> <!-- card end// -->
+                    </div> 
                    
                 </div>
             </div>
-        </section> <!-- content-main end// -->
+        </section>
         <footer class="main-footer font-xs">
             <div class="row pb-30 pt-15">
                 <div class="col-sm-6">
                     <script>
                     document.write(new Date().getFullYear())
-                    </script> ©, Evara - HTML Ecommerce Template .
+                    </script> ©, 999 bookstore .
                 </div>
                 <div class="col-sm-6">
                     <div class="text-sm-end">
@@ -233,10 +77,145 @@
     <script src="/assets1/js/vendors/select2.min.js"></script>
     <script src="/assets1/js/vendors/perfect-scrollbar.js"></script>
     <script src="/assets1/js/vendors/jquery.fullscreen.min.js"></script>
-    <!-- Main Script -->
     <script src="/assets1/js/main.js" type="text/javascript"></script>
+    <script>
+        function submitForm(){
+            const couponname = document.getElementById('couponname').value
+            const couponDate = document.getElementById('couponDate').value
+            const discount = document.getElementById('discount').value
+            const minPurchase = document.getElementById('minPurchase').value
+            const limit = document.getElementById('limit').value
+            const id = document.getElementById('couponid1').value
+            fetch('/admin/editCoupon',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    
+                    couponname:couponname,
+                    couponDate:couponDate,
+                    discount:discount,
+                    limit:limit,
+                    minPurchase:minPurchase,
+                    id:id
+                })
+            })
+            .then(res=>{
+                if(res.ok){
+                    return res.json()
+                }
+            })
+            .then(data => {
+                if (data.message == 'Success') {
+                    console.log("success");
+                    window.location.href = '/admin/coupon';
+                }else if(data.message == 'Failed'){
+                    couponNameError.innerText = 'Coupon Name already exist..';
+                    couponNameError.style.display = 'block';
+                }
+            })
+            .catch(err=>{
+                console.log(err.message)
+            })
+        }
+
+        function validateForm() {
+            let isValid = true;
+    
+            const couponName = document.getElementById('couponname');
+            const couponDate = document.getElementById('couponDate');
+            const discount = document.getElementById('discount');
+            const limit = document.getElementById('limit');
+            const minPurchase = document.getElementById('minPurchase');
+    
+            const couponNameError = document.getElementById('couponNameError');
+            const expiryDateError = document.getElementById('expiryDateError');
+            const discountError = document.getElementById('discountError');
+            const limitError = document.getElementById('limitError');
+            const minPurchaseError = document.getElementById('minPurchaseError');
+    
+            if (couponName.value.trim() === '') {
+                couponNameError.innerText = 'Coupon Name is required';
+                couponNameError.style.display = 'block';
+                isValid = false;
+            } else {
+                couponNameError.style.display = 'none';
+            }
+    
+    
+            if (couponDate.value === '') {
+                expiryDateError.innerText = 'Expiry Date is required';
+                expiryDateError.style.display = 'block';
+                isValid = false;
+            } else {
+                expiryDateError.style.display = 'none';
+            }
+    
+            
+            if (discount.value.trim() === '') {
+                discountError.innerText = 'Flat Discount is required';
+                discountError.style.display = 'block';
+                isValid = false;
+            } else if (isNaN(discount.value)) {
+                discountError.innerText = 'Flat Discount must be a number';
+                discountError.style.display = 'block';
+                isValid = false;
+            } else if (parseFloat(discount.value) < 0) {
+                discountError.innerText = 'Flat Discount cannot be negative';
+                discountError.style.display = 'block';
+                isValid = false;
+            } else {
+                discountError.style.display = 'none';
+            }
+    
+         
+            if (limit.value.trim() === '') {
+                limitError.innerText = 'Limit is required';
+                limitError.style.display = 'block';
+                isValid = false;
+            } else if (isNaN(limit.value)) {
+                limitError.innerText = 'Limit must be a number';
+                limitError.style.display = 'block';
+                isValid = false;
+            } else if (parseFloat(limit.value) < 0) {
+                limitError.innerText = 'Limit cannot be negative';
+                limitError.style.display = 'block';
+                isValid = false;
+            } else {
+                limitError.style.display = 'none';
+            }
+    
+            if (minPurchase.value.trim() === '') {
+                minPurchaseError.innerText = 'Minimum Purchase is required';
+                minPurchaseError.style.display = 'block';
+                isValid = false;
+            } else if (isNaN(minPurchase.value)) {
+                minPurchaseError.innerText = 'Minimum Purchase must be a number';
+                minPurchaseError.style.display = 'block';
+                isValid = false;
+            } else if (parseFloat(minPurchase.value) < 0) {
+                minPurchaseError.innerText = 'Minimum Purchase cannot be negative';
+                minPurchaseError.style.display = 'block';
+                isValid = false;
+            } else if (parseFloat(minPurchase.value) < parseFloat(discount .value)) {
+            minPurchaseError.innerText = 'Minimum Purchase cannot be less than Discound';
+            minPurchaseError.style.display = 'block';
+            isValid = false;
+            } else {
+                minPurchaseError.style.display = 'none';
+            }
+    
+            if(isValid===true){
+                const addingForm = document.getElementById('addingForm')
+                submitForm()
+            }else{
+                console.log("fucked up")
+                return false
+            }
+        }
+    </script>
 </body>
 
 
-<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/page-form-product-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:33:32 GMT -->
 </html>

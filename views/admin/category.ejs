@@ -4,10 +4,6 @@
             <div class="content-header">
                 <div>
                     <h2 class="content-title card-title">Categories </h2>
-                    <p>Add, edit or delete a category</p>
-                </div>
-                <div>
-                    <input type="text" placeholder="Search Categories" class="form-control bg-white">
                 </div>
             </div>
             <div class="card">
@@ -94,49 +90,7 @@
                                                     </form>
                                                     
                                                     </div>
-                                                    <script>
-                                                        function deleteCat(Data){
-                                                            Swal.fire({
-                                                            title: 'Are you sure?',
-                                                            text: 'You want to delete this product.',
-                                                            icon: 'warning',
-                                                            showCancelButton: true,
-                                                            confirmButtonText: 'Yes Delete!',
-                                                            cancelButtonText: 'Cancel'
-                                                        }).then((result) => {
-                                                            if (result.isConfirmed) {
-                                                                fetch('/admin/deleteCategory',{
-                                                                method:'POST',
-                                                                headers:{
-                                                                    'Content-Type':'application/json'
-                                                                },
-                                                                body:JSON.stringify({
-                                                                    id:Data
-                                                                })
-                                                            })
-                                                            .then(responce=>{
-                                                               return responce.json()
-                                                            })
-                                                            .then(data=>{
-                                                                if(data.message == 'Success'){
-                                                                    Swal.fire({
-                                                                    icon: 'success',
-                                                                    title: 'Success!',
-                                                                    text: 'The action was completed successfully.',
-                                                                    confirmButtonText: 'OK'
-                                                                    }).then((result) => {
-                                                                    if (result.isConfirmed) {
-                                                                        location.reload()
-                                                                    }
-                                                                    });
-                                                                }
-                                                            })
-                                                            }
-                                                        });
-                                                            
-                                                        }
-                                                    </script>
-                                                </div> <!-- dropdown //end -->
+                                                </div>
                                             </td>
                                             
                                         </tr>
@@ -152,33 +106,36 @@
                                 </table>
                             </div>
                             <div>
-                            <ul class="pagination justify-content-end">
-                                <% if (currentPage > 1) { %>
-                                    <li class="page-item">
-                                        <a class="page-link" href="/admin/category?page=<%= currentPage - 1 %>"><i class="material-icons md-chevron_left"></i></a>
-                                    </li>
-                                <% } %>
-                    
-                                <% for (let i = 1; i <= totalPages; i++) { %>
-                                    <li class="page-item <%= i === currentPage ? 'active' : '' %>">
-                                        <a class="page-link" href="/admin/category?page=<%= i %>"><%= i %></a>
-                                    </li>
-                                <% } %>
-                    
-                                <% if (currentPage < totalPages) { %>
-                                    <li class="page-item">
-                                        <a class="page-link" href="/admin/category?page=<%= currentPage + 1 %>"><i class="material-icons md-chevron_right"></i></a>
-                                    </li>
-                                <% } %>
-                            </ul>
+                                <div class="pagination-area mt-15 mb-50">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-start">
+                                    <% if (currentPage > 1) { %>
+                                        <li class="page-item">
+                                            <a class="page-link active" href="/admin/category?page=<%= currentPage - 1 %>"><i class="material-icons md-chevron_left"></i></a>
+                                        </li>
+                                    <% } %>
+                            
+                                    <% for (let i = 1; i <= totalPages; i++) { %>
+                                        <li class="page-item <%= i === currentPage ? 'active-green' : '' %>">
+                                            <a class="page-link" href="/admin/category?page=<%= i %>"><%= i %></a>
+                                        </li>
+                                    <% } %>
+                            
+                                    <% if (currentPage < totalPages) { %>
+                                        <li class="page-item">
+                                            <a class="page-link" href="/admin/category?page=<%= currentPage + 1 %>"><i class="material-icons md-chevron_right"></i></a>
+                                        </li>
+                                    <% } %>
+                                </ul>
+                                </nav>
+                                </div>
                             </div>
-                        </div> <!-- .col// -->
-                    </div> <!-- .row // -->
+                            
+                        </div>
+                    </div>
                 </div>
-                 
-                
             </div> 
-        </section> <!-- content-main end// -->
+        </section> 
         <footer class="main-footer font-xs">
             <div class="row pb-30 pt-15">
                 <div class="col-sm-6">
@@ -268,6 +225,48 @@
 
    
 
+</script>
+<script>
+    function deleteCat(Data){
+        Swal.fire({
+        title: 'Are you sure?',
+        text: 'You want to delete this product.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes Delete!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('/admin/deleteCategory',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                id:Data
+            })
+        })
+        .then(responce=>{
+           return responce.json()
+        })
+        .then(data=>{
+            if(data.message == 'Success'){
+                Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'The action was completed successfully.',
+                confirmButtonText: 'OK'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload()
+                }
+                });
+            }
+        })
+        }
+    });
+        
+    }
 </script>
 
 <!-- =================================end of sweet code========================= -->

@@ -4,35 +4,9 @@
             <div class="content-header">
                 <div>
                     <h2 class="content-title card-title">Order List </h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div>
-                    <input type="text" placeholder="Search order ID" class="form-control bg-white">
                 </div>
             </div>
             <div class="card mb-4">
-                <header class="card-header">
-                    <div class="row gx-3">
-                        <div class="col-lg-4 col-md-6 me-auto">
-                            <input type="text" placeholder="Search..." class="form-control">
-                        </div>
-                        <div class="col-lg-2 col-6 col-md-3">
-                            <select class="form-select">
-                                <option>Status</option>
-                                <option>Active</option>
-                                <option>Disabled</option>
-                                <option>Show all</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 col-6 col-md-3">
-                            <select class="form-select">
-                                <option>Show 20</option>
-                                <option>Show 30</option>
-                                <option>Show 40</option>
-                            </select>
-                        </div>
-                    </div>
-                </header> <!-- card-header end// -->
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -49,31 +23,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <tr>
-                                    <td>0901</td>
-                                    <td><b>Marvin McKinney</b></td>
-                                    <td><template class="__cf_email__" data-cfemail="aec3cfdcd8c7c0eecbd6cfc3dec2cb80cdc1c3">[email&#160;protected]</template></td>
-                                    <td>$9.00</td>
-                                    <td><span class="badge rounded-pill alert-warning">Pending</span></td>
-                                    <td>03.12.2020</td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                                        <div class="dropdown">
-                                            <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">View detail</a>
-                                                <a class="dropdown-item" href="#">Edit info</a>
-                                                <a class="dropdown-item text-danger" href="#">Delete</a>
-                                            </div>
-                                        </div> 
-                                    </td>
-                                </tr> -->
                                 <% if (orderData.length > 0) { %>
                                     <% for(let i=0;i<orderData.length;i++){ %>
                                         <tr>
                                             <td> # <%= orderData[i].orderId %></td>
                                             <td><b style="color: green;"><%= orderData[i].paymentMethod %></b></td>                                            
-                                            <td>$<%= orderData[i].totalAmount %></td>
+                                            <td>₹<%= orderData[i].totalAmount %></td>
                                             <td><span class="badge rounded-pill alert-danger"><%= orderData[i].paymentStatus %></span></td>
                                             <td><span id="status"  class="badge rounded-pill alert-success"><%= orderData[i].Status %></span></td>
                                             <td><%= orderData[i].currentData.toLocaleDateString() %></td>
@@ -94,8 +49,6 @@
                                                             <option value="<%= orderData[i].Status %>" selected><%= orderData[i].Status %></option>
                                                         <% } %>
                                                 </select>
-                                                
-                                                
                                             </td>
                                             <td class="text-end">
                                                 <input type="hidden" value="<%= orderData[i]._id %>">
@@ -108,21 +61,71 @@
                                                         <a class="dropdown-item" href="/admin/vieworders?id=<%= orderData[i]._id %>">View detail</a>
                                                         
                                                     </div>
-                                                </div> <!-- dropdown //end -->
+                                                </div> 
                                             </td>
                                         </tr>
                                     <% } %>
                                 <% } %>
-
-                               <!-- SweetAlert CSS -->
+                                    </td>
+                                </tr> 
+                                
+                            </tbody>
+                        </table>
+                    </div> 
+                </div> 
+            </div>
+            <div class="pagination-area mt-15 mb-50">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-start">
+                        <% for(let i = 1; i <= totalPages; i++) { %>
+                            <% if (i === currentPage) { %>
+                                <li class="page-item active"><a class="page-link" href="#"><%= i %></a></li>
+                            <% } else { %>
+                                <li class="page-item"><a class="page-link" href="/admin/order?page=<%= i %>"><%= i %></a></li>
+                            <% } %>
+                        <% } %>
+                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="/admin/order?page=<%= totalPages %>"><%= totalPages %></a></li>
+                        <% if (currentPage === totalPages) { %>
+                            <li class="page-item"><a class="page-link" href="/admin/order?page=1"><i class="material-icons md-chevron_right"></i></a></li>
+                        <% } else { %>
+                            <li class="page-item"><a class="page-link" href="/admin/order?page=<%= currentPage + 1 %>"><i class="material-icons md-chevron_right"></i></a></li>
+                        <% } %>
+                    </ul>
+                </nav>
+                
+            </div>
+            
+        </section>
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+                    document.write(new Date().getFullYear())
+                    </script> ©, 999 bookstore .
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="/assets1/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/assets1/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/assets1/js/vendors/select2.min.js"></script>
+    <script src="/assets1/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/assets1/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/assets1/js/main.js" type="text/javascript"></script>
+                                  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
-
-<!-- SweetAlert JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
                                 
-                                <script>
-                                    const changeButtons = document.querySelectorAll('.change-btn');
+<script>
+const changeButtons = document.querySelectorAll('.change-btn');
 
 changeButtons.forEach(button => {
     button.addEventListener('click', function() {
@@ -161,83 +164,9 @@ changeButtons.forEach(button => {
     });
 });
 
-                                </script>
+ </script>
                                 
 
-    
-    
-                                
-                               
-                                <!-- <tr>
-                                    <td>2323</td>
-                                    <td><b>Jenny Wilson</b></td>
-                                    <td><template class="__cf_email__" data-cfemail="b8d2ddd6d6c1f8ddc0d9d5c8d4dd96dbd7d5">[email&#160;protected]</template></td>
-                                    <td>$589.99</td>
-                                    <td><span class="badge rounded-pill alert-success">Received</span></td>
-                                    <td>22.05.2020</td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                                        <div class="dropdown">
-                                            <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">View detail</a>
-                                                <a class="dropdown-item" href="#">Edit info</a>
-                                                <a class="dropdown-item text-danger" href="#">Delete</a>
-                                            </div>
-                                        </div> <!-- dropdown //end -->
-                                    </td>
-                                </tr> 
-                                
-                            </tbody>
-                        </table>
-                    </div> <!-- table-responsive //end -->
-                </div> <!-- card-body end// -->
-            </div> <!-- card end// -->
-            <div class="pagination-area mt-15 mb-50">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-start">
-                        <% for(let i = 1; i <= totalPages; i++) { %>
-                            <% if (i === currentPage) { %>
-                                <li class="page-item active"><a class="page-link" href="#"><%= i %></a></li>
-                            <% } else { %>
-                                <li class="page-item"><a class="page-link" href="/admin/order?page=<%= i %>"><%= i %></a></li>
-                            <% } %>
-                        <% } %>
-                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="/admin/order?page=<%= totalPages %>"><%= totalPages %></a></li>
-                        <% if (currentPage === totalPages) { %>
-                            <li class="page-item"><a class="page-link" href="/admin/order?page=1"><i class="material-icons md-chevron_right"></i></a></li>
-                        <% } else { %>
-                            <li class="page-item"><a class="page-link" href="/admin/order?page=<%= currentPage + 1 %>"><i class="material-icons md-chevron_right"></i></a></li>
-                        <% } %>
-                    </ul>
-                </nav>
-                
-            </div>
-            
-        </section> <!-- content-main end// -->
-        <footer class="main-footer font-xs">
-            <div class="row pb-30 pt-15">
-                <div class="col-sm-6">
-                    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-                    document.write(new Date().getFullYear())
-                    </script> ©, Evara - HTML Ecommerce Template .
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-end">
-                        All rights reserved
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </main>
-    <script src="/assets1/js/vendors/jquery-3.6.0.min.js"></script>
-    <script src="/assets1/js/vendors/bootstrap.bundle.min.js"></script>
-    <script src="/assets1/js/vendors/select2.min.js"></script>
-    <script src="/assets1/js/vendors/perfect-scrollbar.js"></script>
-    <script src="/assets1/js/vendors/jquery.fullscreen.min.js"></script>
-    <!-- Main Script -->
-    <script src="/assets1/js/main.js" type="text/javascript"></script>
 </body>
 
 

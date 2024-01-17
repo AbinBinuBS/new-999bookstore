@@ -1,5 +1,5 @@
-const sessionSecret = "mySessionSecret"
+const sessionSecret = "mySessionSecret";
 
 module.exports = {
-    sessionSecret
-}
+  sessionSecret,
+};

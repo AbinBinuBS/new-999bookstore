@@ -1,234 +1,239 @@
 <%-include('header.ejs')%>
 
-        <section class="content-main">
-            <div class="content-header">
-                <div>
-                    <h2 class="content-title card-title">Order detail</h2>
+<section class="content-main">
+    <div class="content-header">
+        <div>
+            <h2 class="content-title card-title">Order detail</h2>
+        </div>
+    </div>
+    <div class="card">
+        <header class="card-header">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 mb-lg-0 mb-15">
+                    <span>
+                        <i class="material-icons md-calendar_today"></i> <b><%= new Date(orderData.currentDate).toLocaleString() %></b>
+                    </span> <br>
+                    <small class="text-muted">Order ID: # <%=orderData.orderId%></small>
+                </div>
+                <div class="col-lg-6 col-md-6 ms-auto text-md-end">
+                    <a class="btn btn-primary" onclick="downloadFile()" href="#"><i class="icon material-icons md-print"></i>Save</a>
                 </div>
             </div>
-            <div class="card">
-                <header class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-md-6 mb-lg-0 mb-15">
-                            <span>
-                                <i class="material-icons md-calendar_today"></i> <b><%= new Date(orderData.currentDate).toLocaleString() %></b>
-                            </span> <br>
-                            <small class="text-muted">Order ID: # <%=orderData.orderId%></small>
+        </header> 
+        <div class="card-body">
+            <div class="row mb-50 mt-20 order-info-wrap">
+                <div class="col-md-4">
+                    <article class="icontext align-items-start">
+                        <span class="icon icon-sm rounded-circle bg-primary-light">
+                            <i class="text-primary material-icons md-person"></i>
+                        </span>
+                        <div class="text">
+                            <h6 class="mb-1">Customer</h6>
+                            <p class="mb-1">
+                                <%=orderData.address[0].firstName%>  <br> <template class="__cf_email__" data-cfemail="e2838e879aa2879a838f928e87cc818d8f">[email&#160;protected]</template> <br> 
+                            </p>
                         </div>
-                        <div class="col-lg-6 col-md-6 ms-auto text-md-end">
-                            <a class="btn btn-primary" onclick="downloadFile()" href="#"><i class="icon material-icons md-print"></i>Save</a>
-                            <script>
-                                function downloadFile() {
-                                 window.print();
-                                }
-                            </script>
+                    </article>
+                </div> 
+                <div class="col-md-4">
+                    <article class="icontext align-items-start">
+                        <span class="icon icon-sm rounded-circle bg-primary-light">
+                            <i class="text-primary material-icons md-local_shipping"></i>
+                        </span>
+                        <div class="text">
+                            <h6 class="mb-1">Order info</h6>
+                            <p class="mb-1">
+                                Shipping: Fargo express <br> Pay method: <%=orderData.paymentMethod%><br> Status: <%=orderData.Status%>
+                            </p>
                         </div>
-                    </div>
-                </header> <!-- card-header end// -->
-                <div class="card-body">
-                    <div class="row mb-50 mt-20 order-info-wrap">
-                        <div class="col-md-4">
-                            <article class="icontext align-items-start">
-                                <span class="icon icon-sm rounded-circle bg-primary-light">
-                                    <i class="text-primary material-icons md-person"></i>
-                                </span>
-                                <div class="text">
-                                    <h6 class="mb-1">Customer</h6>
-                                    <p class="mb-1">
-                                        <%=orderData.address[0].firstName%>  <br> <template class="__cf_email__" data-cfemail="e2838e879aa2879a838f928e87cc818d8f">[email&#160;protected]</template> <br> 
-                                    </p>
-                                </div>
-                            </article>
-                        </div> <!-- col// -->
-                        <div class="col-md-4">
-                            <article class="icontext align-items-start">
-                                <span class="icon icon-sm rounded-circle bg-primary-light">
-                                    <i class="text-primary material-icons md-local_shipping"></i>
-                                </span>
-                                <div class="text">
-                                    <h6 class="mb-1">Order info</h6>
-                                    <p class="mb-1">
-                                        Shipping: Fargo express <br> Pay method: <%=orderData.paymentMethod%><br> Status: <%=orderData.Status%>
-                                    </p>
-                                </div>
-                            </article>
-                        </div> <!-- col// -->
-                        <div class="col-md-4">
-                            <article class="icontext align-items-start">
-                                <span class="icon icon-sm rounded-circle bg-primary-light">
-                                    <i class="text-primary material-icons md-place"></i>
-                                </span>
-                                <div class="text">
-                                    <h6 class="mb-1">Deliver to</h6>
-                                    <p class="mb-1">
-                                        City: <%=orderData.address[0].City%>, <%=orderData.address[0].District%> <br>,<%=orderData.address[0].State%> <%=orderData.address[0].Pincode%> <br> 
-                                    </p>
-                                    <a href="#">View profile</a>
-                                </div>
-                            </article>
-                        </div> <!-- col// -->
-                    </div> <!-- row // -->
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th width="40%">Product</th>
-                                            <th width="20%">Unit Price</th>
-                                            <th width="20%">Quantity</th>
-                                            <th width="20%" class="text-end">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% if (orderData && Array.isArray(orderData.items) && orderData.items.length > 0) {
-                                            orderData.items.forEach((item) => { %>
-                                        <tr>
-                                            <td>
-                                                <a class="itemside" href="#">
-                                                    <div class="left">
-                                                        <img src="/productimages/<%= item.productId.Image[0]%>"  class="img-xs" alt="Item">
-                                                    </div>
-                                                    <div class="info"> <%= item.productId.productName %> </div>
-                                                </a>
-                                            </td>
-                                            <td> $<%= item.productId.salePrice %> </td>
-                                            <td> <%= item.quantity %></td>
-                                            <td class="text-end"> $<%= item.productId.salePrice * item.quantity%></td>
-                                        </tr>
-                                        <%  });
-                                    } else { %>
-                                        <!-- Handling for no items or if orderData.items is not an array -->
-                                    <% } %>
-                                        
-                                            <td colspan="4">
-                                                <article class="float-end">
-                                                    <dl class="dlist">
-                                                        <dt>Subtotal:</dt>
-                                                        <dd>$<%= orderData.totalAmount %></dd>
-                                                    </dl>
-                                                    <dl class="dlist">
-                                                        <dt>Shipping cost:</dt>
-                                                        <dd>free</dd>
-                                                    </dl>
-                                                    <dl class="dlist">
-                                                        <dt>Grand total:</dt>
-                                                        <dd> <b class="h5"><%= orderData.totalAmount %></b> </dd>
-                                                    </dl>
-                                                    <dl class="dlist">
-                                                        <dt class="text-muted">Status:</dt>
-                                                        <dd>
-                                                            <span class="badge rounded-pill alert-success text-success"><%= orderData.Status %></span>
-                                                        </dd>
-                                                    </dl>
-                                                </article>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div> <!-- table-responsive// -->
-                        </div> <!-- col// -->
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-4">
-                            
-                            <div class="h-25 pt-4">
-                                <% if (orderData.Status === 'Delivered') { %>
+                    </article>
+                </div> 
+                <div class="col-md-4">
+                    <article class="icontext align-items-start">
+                        <span class="icon icon-sm rounded-circle bg-primary-light">
+                            <i class="text-primary material-icons md-place"></i>
+                        </span>
+                        <div class="text">
+                            <h6 class="mb-1">Deliver to</h6>
+                            <p class="mb-1">
+                                City: <%=orderData.address[0].City%>, <%=orderData.address[0].District%> <br>,<%=orderData.address[0].State%> <%=orderData.address[0].Pincode%> <br> 
+                            </p>
+                        </div>
+                    </article>
+                </div> 
+            </div> 
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th width="40%">Product</th>
+                                    <th width="20%">Unit Price</th>
+                                    <th width="20%">Quantity</th>
+                                    <th width="20%" class="text-end">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (orderData && Array.isArray(orderData.items) && orderData.items.length > 0) {
+                                    orderData.items.forEach((item) => { %>
+                                <tr>
                                     <td>
-                                        <h2 style="color: green;">Delivered</h2>
+                                        <a class="itemside" href="#">
+                                            <div class="left">
+                                                <img src="/productimages/<%= item.productId.Image[0]%>"  class="img-xs" alt="Item">
+                                            </div>
+                                            <div class="info"> <%= item.productId.productName %> </div>
+                                        </a>
                                     </td>
-                                <% } else { %>
-                                    <% if (orderData.Status !== 'Cancelled') { %>
-                                        <td>
-                                            <button onclick="confirmCancellation('<%= orderData._id %>')" style="background-color: red; border: none; color: white; font-size: 16px;">Cancel</button>
-                                        </td>
-                                    <% } else { %>
-                                        <td>
-                                            <h2 style="color: red;">Cancelled</h2>
-                                        </td>
-                                    <% } %>
-                                <% } %>
+                                    <td> ₹<%= item.productId.salePrice %> </td>
+                                    <td> <%= item.quantity %></td>
+                                    <td  class="text-end"> ₹<%= item.productId.salePrice * item.quantity%></td>
+                                </tr>
+                                <%  });
+                            } else { %>
+                            <% } %>
                                 
-                                
-                                
-                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-                                <script>
-                                    function confirmCancellation(orderId) {
-                                        Swal.fire({
-                                            title: 'Are you sure?',
-                                            text: 'This action cannot be undone!',
-                                            icon: 'warning',
-                                            showCancelButton: true,
-                                            confirmButtonColor: 'red',
-                                            cancelButtonColor: 'gray',
-                                            confirmButtonText: 'Yes, cancel it!'
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                Swal.showLoading(); // Show loading indicator
-                                                fetch('/admin/orderstatus', {
-                                                    method: 'POST',
-                                                    headers: {
-                                                        'Content-Type': 'application/json'
-                                                    },
-                                                    body: JSON.stringify({ orderId: orderId })
-                                                })
-                                                .then(response => {
-                                                    if (response.ok) {
-                                                        // Show success message
-                                                        Swal.fire({
-                                                            title: 'Cancelled!',
-                                                            text: 'Order has been cancelled.',
-                                                            icon: 'success'
-                                                        }).then(() => {
-                                                            // Redirect to '/account' after the user acknowledges the success message
-                                                            window.location.href = '/admin/order';
-                                                        });
-                                                    } else {
-                                                        throw new Error('Failed to cancel order');
-                                                    }
-                                                })
-                                                .catch(error => {
-                                                    // Handle error if the POST request fails
-                                                    console.error(error);
-                                                    Swal.fire({
-                                                        title: 'Error!',
-                                                        text: 'Failed to cancel order.',
-                                                        icon: 'error'
-                                                    });
-                                                });
-                                            }
-                                        });
-                                    }
-                                </script>
-                            </div>
-                        </div> <!-- col// -->
+                                    <td colspan="4">
+                                        <article class="float-end">
+                                            <dl class="dlist">
+                                                <dt>Subtotal:</dt>
+                                                <dd id="subtotal">₹</dd>
+                                            </dl>
+                                            <dl class="dlist">
+                                                <dt>Shipping cost:</dt>
+                                                <dd>free</dd>
+                                            </dl>
+                                            <dl class="dlist">
+                                                <dt>Grand total:</dt>
+                                                <dd> <b class="h5">₹<%= orderData.totalAmount %></b> </dd>
+                                            </dl>
+                                            <dl class="dlist">
+                                                <dt class="text-muted">Status:</dt>
+                                                <dd>
+                                                    <span class="badge rounded-pill alert-success text-success"><%= orderData.Status %></span>
+                                                </dd>
+                                            </dl>
+                                        </article>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </div> <!-- card-body end// -->
-            </div> <!-- card end// -->
-        </section> <!-- content-main end// -->
-        <footer class="main-footer font-xs">
-            <div class="row pb-30 pt-15">
-                <div class="col-sm-6">
-                    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-                    document.write(new Date().getFullYear())
-                    </script> ©, Evara - HTML Ecommerce Template .
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-end">
-                        All rights reserved
+                </div> 
+                <div class="col-lg-1"></div>
+                <div class="col-lg-4">
+                    <div class="h-25 pt-4">
+                        <% if (orderData.Status === 'Delivered') { %>
+                            <td>
+                                <h2 style="color: green;">Delivered</h2>
+                            </td>
+                        <% } else { %>
+                            <% if (orderData.Status !== 'Cancelled') { %>
+                                <td>
+                                    <button onclick="confirmCancellation('<%= orderData._id %>')" style="background-color: red; border: none; color: white; font-size: 16px;">Cancel</button>
+                                </td>
+                            <% } else { %>
+                                <td>
+                                    <h2 style="color: red;">Cancelled</h2>
+                                </td>
+                            <% } %>
+                        <% } %>
                     </div>
-                </div>
+                </div> 
             </div>
-        </footer>
-    </main>
-    <script src="/assets1/js/vendors/jquery-3.6.0.min.js"></script>
-    <script src="/assets1/js/vendors/bootstrap.bundle.min.js"></script>
-    <script src="/assets1/js/vendors/select2.min.js"></script>
-    <script src="/assets1/js/vendors/perfect-scrollbar.js"></script>
-    <script src="/assets1/js/vendors/jquery.fullscreen.min.js"></script>
-    <!-- Main Script -->
-    <script src="/assets1/js/main.js" type="text/javascript"></script>
+        </div>
+    </div> 
+</section> 
+<footer class="main-footer font-xs">
+    <div class="row pb-30 pt-15">
+        <div class="col-sm-6">
+            <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+            document.write(new Date().getFullYear())
+            </script> ©, 999 bookstore .
+        </div>
+        <div class="col-sm-6">
+            <div class="text-sm-end">
+                All rights reserved
+            </div>
+        </div>
+    </div>
+</footer>
+</main>
+<script src="/assets1/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="/assets1/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="/assets1/js/vendors/select2.min.js"></script>
+<script src="/assets1/js/vendors/perfect-scrollbar.js"></script>
+<script src="/assets1/js/vendors/jquery.fullscreen.min.js"></script>
+<script src="/assets1/js/main.js" type="text/javascript"></script>
+<script>
+    function downloadFile() {
+     window.print();
+    }
+</script>
+<script>
+    const productPrices = document.querySelectorAll(".text-end");
+  
+    let totalPrice = 0;
+  
+    productPrices.forEach((priceElement) => {
+      const price = parseFloat(priceElement.textContent.replace(/[^\d.-]/g, ''));
+      if (!isNaN(price)) {
+        totalPrice += price;
+      }
+    });
+    const subtotalElement = document.getElementById('subtotal');
+    if (subtotalElement) {
+      subtotalElement.textContent = `₹${totalPrice.toFixed(2)}`;
+    }
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function confirmCancellation(orderId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'red',
+            cancelButtonColor: 'gray',
+            confirmButtonText: 'Yes, cancel it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.showLoading(); 
+                fetch('/admin/orderstatus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ orderId: orderId })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        Swal.fire({
+                            title: 'Cancelled!',
+                            text: 'Order has been cancelled.',
+                            icon: 'success'
+                        }).then(() => {
+                            window.location.href = '/admin/order';
+                        });
+                    } else {
+                        throw new Error('Failed to cancel order');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Failed to cancel order.',
+                        icon: 'error'
+                    });
+                });
+            }
+        });
+    }
+</script>
 </body>
 
 
-<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/page-orders-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:33:22 GMT -->
 </html>

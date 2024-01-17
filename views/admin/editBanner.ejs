@@ -1,7 +1,6 @@
 <%-include('header.ejs')%>
 
         <section class="content-main">
-            <!-- i just changed the id id="productForm" -->
             <form  id="myForm" action="/admin/editBanner" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-9">
@@ -86,51 +85,13 @@
                     </div>
                 </div>
             </form>
-            <script>
-                const form = document.getElementById('myForm')
-                 form.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    const bannername = document.getElementById('bannername').value;
-                    const target = document.getElementById('target').value;
-                    const date = document.getElementById('date').value;
-                    const text = document.querySelector('textarea[name="text"]').value
-                    document.querySelectorAll('.text-danger').forEach(element => element.textContent = '');
-    
-                    if (bannername.trim() === '') {
-                    document.getElementById('bannerError').textContent = 'Banner Name is required.';
-                    return false;
-                    }
-    
-                    if (target.trim() === '') {
-                    document.getElementById('targetError').textContent = 'Target is required.';
-                    return false;
-                    }
-    
-                    if (date.trim() === '') {
-                    document.getElementById('dateError').textContent = 'Date is required.';
-                    return false;
-                    }
-    
-                    if (text.trim() === '') {
-                    document.getElementById('textError').textContent = 'Text is required.';
-                    return false;
-                    }
-
-                    
-                    this.submit();
-            
-            })
-    
-            </script>
         </section>
-
-            <!-- content-main end// -->
         <footer class="main-footer font-xs">
             <div class="row pb-30 pt-15">
                 <div class="col-sm-6">
                     <script>
                     document.write(new Date().getFullYear())
-                    </script> ©, Evara - HTML Ecommerce Template .
+                    </script> ©, 999bookstore .
                 </div>
                 <div class="col-sm-6">
                     <div class="text-sm-end">
@@ -156,7 +117,38 @@
      <!-- ====================== end of validation====================== -->
 
      <!-- ====================== Displaying img in frontend====================== -->
+     <script>
+        const form = document.getElementById('myForm')
+         form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const bannername = document.getElementById('bannername').value;
+            const target = document.getElementById('target').value;
+            const date = document.getElementById('date').value;
+            const text = document.querySelector('textarea[name="text"]').value
+            document.querySelectorAll('.text-danger').forEach(element => element.textContent = '');
 
+            if (bannername.trim() === '') {
+            document.getElementById('bannerError').textContent = 'Banner Name is required.';
+            return false;
+            }
+
+            if (target.trim() === '') {
+            document.getElementById('targetError').textContent = 'Target is required.';
+            return false;
+            }
+
+            if (date.trim() === '') {
+            document.getElementById('dateError').textContent = 'Date is required.';
+            return false;
+            }
+
+            if (text.trim() === '') {
+            document.getElementById('textError').textContent = 'Text is required.';
+            return false;
+            }
+            this.submit();
+    })
+    </script>
 
      <script>
         function displaySelectedImages(event) {
@@ -187,9 +179,6 @@
             }
         }
     
-        // function handleRemove(imagePath) {
-        //     console.log(`Removing image: ${imagePath}`);
-        // }
     </script>
 
      <!-- ====================== end of Displaying img in frontend====================== -->
@@ -230,7 +219,6 @@
 </body>
 
 
-<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/page-form-product-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:33:32 GMT -->
 </html>
 
 
