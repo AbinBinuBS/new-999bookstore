@@ -316,12 +316,13 @@ const productManagement = async (req, res) => {
   }
 };
 
-const loadProduct = async (req, res) => {
+
+const loadProduct = async (req,res,next) => {
   try {
     const productsData = await Category.find({});
     res.render("addProduct", { product: productsData });
   } catch (error) {
-    console.log(error);
+    next(new Error('An error occurred'));(error);
   }
 };
 
