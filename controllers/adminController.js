@@ -318,8 +318,14 @@ const productManagement = async (req, res) => {
 
 const loadProduct = async (req, res) => {
   try {
-    const productsData = await Category.find({});
-    res.render("addProduct", { product: productsData });
+    const currentDate = new Date();
+    const bannerData = await Banner.find();
+    for (const banner of bannerData) {
+      if (banner.expiryDate <= currentDate) {
+        await Banner.findByIdAndUpdate(banner._id, { is_active: 0 });
+      }
+    }
+    res.render("banner", { bannerData: bannerData });
   } catch (error) {
     console.log(error.message);
   }
