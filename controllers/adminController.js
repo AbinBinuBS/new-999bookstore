@@ -319,7 +319,7 @@ const productManagement = async (req, res) => {
 const loadProduct = async (req, res) => {
   try {
    
-    res.render("banner");
+    res.render("addproduct");
   } catch (error) {
     console.log(error.message);
   }
