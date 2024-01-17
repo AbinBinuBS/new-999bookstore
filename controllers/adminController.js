@@ -318,8 +318,8 @@ const productManagement = async (req, res) => {
 
 const loadProduct = async (req, res) => {
   try {
-    const productsData = await Category.find({});
-    res.render("addProduct", { product: productsData });
+    // const productsData = await Category.find({});
+    res.render("addProduct");
   } catch (error) {
     console.log(error.message);
   }
