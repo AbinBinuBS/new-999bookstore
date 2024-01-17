@@ -54,7 +54,7 @@ const sendVerifyMail = async (data) => {
   let mailDetails = {
     from: "xyz@gmail.com",
     to: data,
-    subject: `ypur otp is:${generatedOTP}`,
+    subject: `your otp is:${generatedOTP}`,
     text: "Your OTP for validation",
   };
 
@@ -324,9 +324,16 @@ const homePage = async (req, res, next) => {
       .sort({ currentDate: -1 })
       .limit(8);
 
-    const dicountProduct = await Product.find({})
+      const dicountProduct = await Product.find({
+        Category: { $in: activeCategoryIds },
+      })
+        .populate({
+          path: "Category",
+          match: { is_active: "1" },
+          select: "-is_active",
+        })
       .sort({ currentDate: -1 })
-      .limit(12);
+      .limit(8);
 
     const displayCategory = await Product.find({}).populate("Category");
     userData = await User.findById(req.session.user_id);

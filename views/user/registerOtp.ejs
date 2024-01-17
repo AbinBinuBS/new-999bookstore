@@ -83,22 +83,8 @@
 	<!--================Login Box Area =================-->
 	<section class="login_box_area section_gap">
 		<div class="container">
-			<div class="row">
+			<div class="row justify-content-center">
 				<div class="col-lg-6">
-					<div class="login_box_img">
-						<img class="img-fluid" src="img/loginpage/login1.webp" alt="">
-						<div class="hover">
-							<h4>New to our website?</h4>
-							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="primary-btn" href="/register">Create an Account</a>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-6">
-
-		
-
 					<div class="login_form_inner">
 						<form class="row login_form" action="/verifyOtp" method="post" id="contactForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
@@ -117,9 +103,7 @@
 						<div class="resend-container">
 							<button id="resendButton" class="primary-btn" style="display: none; border:none">Resend OTP</button>
 						</div>
-						<div id="countdown">30 seconds</div>
-						
-								
+						<div id="countdown">60 seconds</div>
 					</div>
 					</div>
 				</div>
@@ -148,7 +132,7 @@
 			const submitform = document.getElementById('contactForm')
 			submitform.submit()
 		}
-	let remainingTime = parseInt(localStorage.getItem('remainingTime')) || 30;
+	let remainingTime = parseInt(localStorage.getItem('remainingTime')) || 60;
 	let countdownInterval;
 
 	function updateCountdown(remainingTime) {
@@ -188,7 +172,7 @@
 	};
 
 	document.getElementById('resendButton').addEventListener('click', function () {
-		remainingTime = 30;
+		remainingTime = 60;
 
 		fetch('/resendOtp', {
 			method: 'POST',
