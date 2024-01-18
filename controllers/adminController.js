@@ -586,11 +586,18 @@ const addCategory = async (req, res) => {
     });
 
     if (duplicateData > 0) {
-      const productData = await Category.find({});
-      res.render("category", {
-        message: " already exist..!",
-        categories: productData,
-      });
+      const page = req.query.page ? parseInt(req.query.page) : 1;
+    const limit = 6;
+    const skip = (page - 1) * limit;
+    const categoryData = await Category.find({}).skip(skip).limit(limit);
+    const totalCount = await Category.countDocuments({});
+    const totalPages = Math.ceil(totalCount / limit);
+    res.render("category", {
+      categories: categoryData,
+      totalPages,
+      currentPage: page,
+      message: " already exist..!"
+    });
     } else {
       const Data = new Category({
         Name: req.body.name,
