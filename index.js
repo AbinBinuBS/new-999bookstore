@@ -20,7 +20,11 @@ app.use('*',(req,res)=>{
 })
 app.use(errorHandler.errorHandler);
 
-
+app.use(session({
+  secret: 'your-secret',
+  resave: false, // or true based on your requirement
+  saveUninitialized: false, // or true based on your requirement
+}));
 
 app.listen(PORT,()=>{
     console.log("server is running at port 3000.....")
